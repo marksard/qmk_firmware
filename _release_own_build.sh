@@ -33,7 +33,7 @@ if [ "$1" = "-all" ] || [ "$1" = "-marksard" ]; then
     make crkbd/rev1:marksard
     make emptystring/NQG:marksard
     make nomu30:marksard
-    make reviung33/NQG:marksard
+    make reviung33:marksard
     make thevankeyboards/minivan:marksard
     make treadstone48/rev1:marksard
     make treadstone48/rev2:marksard
