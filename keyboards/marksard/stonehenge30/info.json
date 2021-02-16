@@ -1,0 +1,97 @@
+[
+  {
+    "name": "Stonehenge30",
+    "author": "@marksard",
+    "background": {
+      "name": "Black",
+      "style": "background-image: url('/bg/leather/black.jpg');"
+    },
+    "switchMount": "cherry",
+    "pcb": true,
+    "plate": true
+  },
+  [
+    {
+      "c": "#e8e7e3",
+      "t": "#000000\n\n\n#f16f3b\n\n\n\n\n\n#34a4b9"
+    },
+    "Q\n\n\nF1\n\n\n\n\n\n1",
+    "W\n\n\nF2\n\n\n\n\n\n2",
+    "E\n\n\nF3\n\n\n\n\n\n3",
+    "R\n\n\nF4\n\n\n\n\n\n4",
+    "T\n\n\nF5\n\n\n\n\n\n5",
+    {
+      "c": "#f16f3b",
+      "t": "#000000"
+    },
+    "BS\n\n\n\nupper",
+    {
+      "c": "#e8e7e3",
+      "t": "#000000\n\n\n#f16f3b\n\n\n\n\n\n#34a4b9"
+    },
+    "Y\n\n\n-\n\n\n\n\n\n6",
+    "U\n\n\n^\n\n\n\n\n\n7",
+    "I\n\n\n\\\n\n\n\n\n\n8",
+    "O\n\n\n@\n\n\n\n\n\n9",
+    "P\n\n\n[\n\n\n\n\n\n0"
+  ],
+  [
+    {
+      "x": 0.25,
+      "t": "#000000\n\n\n#f16f3b"
+    },
+    "A\n\n\nF6\nshift",
+    "S\n\n\nF7",
+    "D\n\n\nF8",
+    {
+      "n": true
+    },
+    "F\n\n\nF9",
+    "G\n\n\nF10",
+    {
+      "x": 0.5,
+      "t": "#000000\n\n\n\n\n\n\n\n\n#34a4b9"
+    },
+    "H\n\n\n\n\n\n\n\n\n&larr;",
+    {
+      "n": true
+    },
+    "J\n\n\n\n\n\n\n\n\n&darr;",
+    {
+      "t": "#000000\n\n\n#f16f3b\n\n\n\n\n\n#34a4b9"
+    },
+    "K\n\n\n:\n\n\n\n\n\n&uarr;",
+    "L\n\n\n;\n\n\n\n\n\n&rarr;",
+    {
+      "c": "#d31929",
+      "t": "#000000\n\n\n#f16f3b"
+    },
+    "Enter\n\n\n]\nshift"
+  ],
+  [
+    {
+      "c": "#e8e7e3"
+    },
+    "Z\n\n\nF11\nctrl",
+    "X\n\n\nF12\nwin",
+    "C\n\n\nEsc\nalt",
+    "V\n\n\nTab",
+    "B\n\n\nKanji",
+    {
+      "c": "#34a4b9",
+      "t": "#000000",
+      "a": 7
+    },
+    "\n\n\n\nlower",
+    {
+      "c": "#e8e7e3",
+      "a": 4
+    },
+    "N\n\n\n\nalt",
+    {
+      "t": "#000000\n\n\n#f16f3b\n\n\n\n\n\n#34a4b9"
+    },
+    "M\n\n\n/\nctrl\n\n\n\n\n-",
+    "<>\n, .\n\n\\\n\n\n\n\n\n."
+  ]
+]

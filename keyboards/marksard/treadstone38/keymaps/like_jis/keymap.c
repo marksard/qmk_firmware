@@ -1,6 +1,7 @@
 #include QMK_KEYBOARD_H
 #include "keymap_jp.h"
 
+extern keymap_config_t keymap_config;
 
 #ifdef RGBLIGHT_ENABLE
 //Following line allows macro to read current RGB settings
@@ -38,12 +39,12 @@ enum custom_keycodes {
 #define KC_Z_CT  LCTL_T(KC_Z)
 #define KC_X_AL  LALT_T(KC_X)
 #define KC_C_GU  LGUI_T(KC_C)
-#define KC_SSCT  RCTL_T(KC_SLSH)
+#define KC_SSCT  LCTL_T(KC_SLSH)
 #define KC_ENSF  RSFT_T(KC_ENT)
 
 // Lower layer mod tap
 #define KC_F6SF  LSFT_T(KC_F6)
-#define KC_QUSF  RSFT_T(KC_QUOT)
+#define KC_BSSF  LSFT_T(KC_BSLS)
 #define KC_11CT  LCTL_T(KC_F11)
 #define KC_12AL  LALT_T(KC_F12)
 
@@ -67,22 +68,22 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|---------+---------+---------+---------+---------+---------+---------+---------+---------+---------|
        KC_A_SF,     KC_S,     KC_D,     KC_F,     KC_G,     KC_H,     KC_J,     KC_K,     KC_L,  KC_ENSF,
   //|---------+---------+---------+---------+---------+---------+---------+---------+---------+---------|
-       KC_Z_CT,  KC_X_AL,  KC_C_GU,     KC_V,     KC_B,     KC_N,     KC_M,  KC_COMM,   KC_DOT,  KC_SSCT,
+          KC_Z,     KC_X,     KC_C,     KC_V,     KC_B,     KC_N,     KC_M,  KC_COMM,   KC_DOT,  KC_SLSH,
   //`---------+---------+---------+---------+---------+---------+---------+---------+---------+---------'
-                                               KC_BSLO,  KC_SPRA
-  //                                        `---------|---------'
+       KC_LCTL,  KC_LALT,  KC_LGUI,            KC_BSLO,            KC_SPRA,    KANJI,   KC_TAB,  KC_LALT
+  //`---------+---------+---------+---------+---------+---------+---------+---------+---------+---------'
   ),
 
   [_LOWER] = LAYOUT(
   //,---------------------------------------------------------------------------------------------------.
-         KC_F1,    KC_F2,    KC_F3,    KC_F4,    KC_F5,  KC_MINS,   KC_EQL,  KC_LBRC,  KC_RBRC,  KC_BSLS,
+         KC_F1,    KC_F2,    KC_F3,    KC_F4,    KC_F5,  KC_MINS,   KC_EQL,  KC_JYEN,  KC_LBRC,  KC_RBRC,
   //|---------+---------+---------+---------+---------+---------+---------+---------+---------+---------|
-       KC_F6SF,    KC_F7,    KC_F8,    KC_F9,   KC_F10,  XXXXXXX,  XXXXXXX,  XXXXXXX,  KC_SCLN,  KC_QUSF,
+       KC_F6SF,    KC_F7,    KC_F8,    KC_F9,   KC_F10,  XXXXXXX,  XXXXXXX,  KC_SCLN,  KC_QUOT,  KC_BSSF,
   //|---------+---------+---------+---------+---------+---------+---------+---------+---------+---------|
-       KC_11CT,  KC_12AL,   KC_ESC,   KC_TAB,    KANJI,   KC_DEL,  XXXXXXX,  KC_JYEN,    KC_RO,   KC_GRV,
+       KC_11CT,  KC_12AL,   KC_ESC,   KC_TAB,    KANJI,   KC_DEL,  XXXXXXX,  XXXXXXX,  XXXXXXX,    KC_RO,
   //`---------+---------+---------+---------+---------+---------+---------+---------+---------+---------'
-                                               _______,  KC_MLAD
-  //                                        `---------|---------'
+       _______,  _______,  _______,            _______,            KC_MLAD,  _______,  _______,  _______
+  //`---------+---------+---------+---------+---------+---------+---------+---------+---------+---------'
   ),
 
   [_RAISE] = LAYOUT(
@@ -93,20 +94,20 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|---------+---------+---------+---------+---------+---------+---------+---------+---------+---------|
        KC_LCTL,  KC_LALT,  KC_LGUI,  XXXXXXX,  XXXXXXX,  KC_MINS,    KC_RO,  KC_COMM,   KC_DOT,  KC_SSCT,
   //`---------+---------+---------+---------+---------+---------+---------+---------+---------+---------'
-                                               _______,  _______
-  //                                        `---------|---------'
+       _______,  _______,  _______,            _______,            _______,  _______,  _______,  _______
+  //`---------+---------+---------+---------+---------+---------+---------+---------+---------+---------'
   ),
 
   [_ADJUST] = LAYOUT(
   //,---------------------------------------------------------------------------------------------------.
-        RESET,    RGBRST,  AG_NORM,  AG_SWAP,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,   KC_INS,  KC_PSCR,
+         RESET,   RGBRST,  AG_NORM,  AG_SWAP,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,
   //|---------+---------+---------+---------+---------+---------+---------+---------+---------+---------|
-       RGB_TOG,  RGB_HUI,  RGB_SAI,  RGB_VAI,  XXXXXXX,  KC_MS_L,  KC_MS_D,  KC_MS_U,  KC_MS_R,  KC_NLCK,
+       RGB_TOG,  RGB_HUI,  RGB_SAI,  RGB_VAI,  XXXXXXX,  KC_MS_L,  KC_MS_D,  KC_MS_U,  KC_MS_R,  XXXXXXX,
   //|---------+---------+---------+---------+---------+---------+---------+---------+---------+---------|
        RGB_MOD,  RGB_HUD,  RGB_SAD,  RGB_VAD,  XXXXXXX,  KC_BTN1,  KC_BTN2,  XXXXXXX,  XXXXXXX,  XXXXXXX,
   //`---------+---------+---------+---------+---------+---------+---------+---------+---------+---------'
-                                               _______,  _______
-  //                                        `---------|---------'
+       _______,  _______,  _______,            _______,            _______,  _______,  _______,  _______
+  //`---------+---------+---------+---------+---------+---------+---------+---------+---------+---------'
   )
 };
 

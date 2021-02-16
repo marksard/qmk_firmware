@@ -1,4 +1,4 @@
-/* Copyright 2020 marksard
+/* Copyright 2019 Ryota Goto
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -14,19 +14,25 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 #include QMK_KEYBOARD_H
+/*
+    K000, K001, K002, K003, K004, K005, K006, K007, K008, K009, K010, K011, \
+    K100, K101, K102, K103, K104, K105, K106, K107, K108, K109, K110, K111, \
+    K200, K201, K202, K203, K204, K205, K206, K207, K208, K209, K210, K211, \
+    K300, K301, K302,     K304,       K306,       K308,   K309, K310, K311  \
+*/
 
 enum layer_number {
-    _BASE,
-    _LOWER,
-    _RAISE,
-    _ADJUST,
+  _BASE = 0,
+  _LOWER,
+  _RAISE,
+  _ADJUST,
 };
 
 enum custom_keycodes {
-    RGBRST = SAFE_RANGE,
-    LOWER,
-    RAISE,
-    KANJI,
+  RGBRST = SAFE_RANGE,
+  LOWER,
+  RAISE,
+  KANJI,
 };
 
 // #define KC_ESAD  LT(_ADJUST, KC_ESC)
@@ -35,66 +41,57 @@ enum custom_keycodes {
 #define KC_SPRA  LT(_RAISE, KC_SPC)
 #define KC_AJST  MO(_ADJUST)
 
-#define KC_Q_AL  LALT_T(KC_Q)
-#define KC_A_CT  LCTL_T(KC_A)
-#define KC_Z_SF  LSFT_T(KC_Z)
-#define KC_X_AL  LALT_T(KC_X)
 #define KC_ENSF  RSFT_T(KC_ENT)
+#define KC_ALAP  RALT_T(KC_APP)
 #define KC_SLSF  RSFT_T(KC_SLSH)
-
-#define KC_F1AL  LALT_T(KC_F1)
-#define KC_F6CT  LCTL_T(KC_F6)
-#define KC_11SF  LSFT_T(KC_F11)
-#define KC_12AL  LALT_T(KC_F12)
-#define KC_QUSF  RCTL_T(KC_QUOT)
-#define KC_ROSF  RSFT_T(KC_RO)
+#define KC_QUSF  RSFT_T(KC_QUOT)
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [_BASE] = LAYOUT_all(
   //,-----------------------------------------------------------------------------------------------------------.
-               KC_Q_AL,    KC_W,    KC_E,    KC_R,    KC_T,    KC_Y,    KC_U,    KC_I,    KC_O,    KC_P, KC_BSPC,
+       KC_TAB,    KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    KC_Y,    KC_U,    KC_I,    KC_O,    KC_P, KC_BSPC,
   //|--------+--------+--------+--------+--------+--------|--------+--------+--------+--------+--------+--------|
-               KC_A_CT,    KC_S,    KC_D,    KC_F,    KC_G,    KC_H,    KC_J,    KC_K,    KC_L,     KC_ENSF,
+      KC_LCTL,    KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    KC_H,    KC_J,    KC_K,    KC_L, KC_ENSF, KC_ENSF,
   //|--------+--------+--------+--------+--------+--------|--------+--------+--------+--------+--------+--------|
-               KC_Z_SF, KC_X_AL,    KC_C,    KC_V,    KC_B,    KC_N,    KC_M, KC_COMM,  KC_DOT,     KC_SLSF,
+      KC_LSFT, KC_LSFT,    KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_N,    KC_M, KC_COMM,  KC_DOT, KC_SLSF,
   //|--------+--------+--------+--------+--------+--------|--------+--------+--------+--------+--------+--------|
-      KC_LCTL, KC_LGUI,                                KC_SPRA,                                 KC_LOWR, KC_RCTL
+      KC_LCTL, _______, KC_LGUI,          _______,          KC_SPRA,          _______, KC_LOWR, _______, KC_ALAP
   //`-----------------------------------------------------------------------------------------------------------'
   ),
 
   [_LOWER] = LAYOUT_all(
   //,-----------------------------------------------------------------------------------------------------------.
-               KC_F1AL,   KC_F2,   KC_F3,   KC_F4,   KC_F5, KC_MINS,  KC_EQL, KC_JYEN, KC_LBRC, KC_RBRC, KC_BSLS,
+       KC_ESC,   KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5, KC_MINS,  KC_EQL, KC_JYEN, KC_LBRC, KC_RBRC, KC_BSLS,
   //|--------+--------+--------+--------+--------+--------|--------+--------+--------+--------+--------+--------|
-               KC_F6CT,   KC_F7,   KC_F8,   KC_F9,  KC_F10, XXXXXXX, XXXXXXX, XXXXXXX, KC_SCLN,     KC_QUSF,
+      _______,   KC_F6,   KC_F7,   KC_F8,   KC_F9,  KC_F10, XXXXXXX, XXXXXXX, XXXXXXX, KC_SCLN, KC_QUSF, KC_QUSF,
   //|--------+--------+--------+--------+--------+--------|--------+--------+--------+--------+--------+--------|
-               KC_11SF, KC_12AL, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,   KC_RO,  KC_GRV, KC_SLSH,     KC_ROSF,
+      _______, _______,  KC_F11,  KC_F12, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,  KC_GRV,   KC_RO,
   //|--------+--------+--------+--------+--------+--------|--------+--------+--------+--------+--------+--------|
-      _______, _______,                                KC_AJST,                                 _______, _______
+      _______, _______, _______,          _______,          KC_AJST,          _______, _______, _______, _______
   //`-----------------------------------------------------------------------------------------------------------'
   ),
 
   [_RAISE] = LAYOUT_all(
   //,-----------------------------------------------------------------------------------------------------------.
-                  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_6,    KC_7,    KC_8,    KC_9,    KC_0, KC_MINS,
+       KC_ESC,    KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_6,    KC_7,    KC_8,    KC_9,    KC_0, KC_MINS,
   //|--------+--------+--------+--------+--------+--------|--------+--------+--------+--------+--------+--------|
-               KC_LCTL, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_LEFT, KC_DOWN,   KC_UP, KC_RGHT,     _______,
+      _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_LEFT, KC_DOWN,   KC_UP, KC_RGHT, _______, _______,
   //|--------+--------+--------+--------+--------+--------|--------+--------+--------+--------+--------+--------|
-               KC_LSFT, XXXXXXX,  KC_ESC,  KC_TAB,   KANJI,  KC_DEL, KC_COMM,  KC_DOT, KC_BSLS,     KC_ROSF,
+      _______, _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,   KANJI,  KC_DEL, KC_COMM,  KC_DOT, KC_BSLS, _______,
   //|--------+--------+--------+--------+--------+--------|--------+--------+--------+--------+--------+--------|
-      _______, _______,                                _______,                                 KC_AJST, _______
+      _______, _______, _______,          _______,          _______,          _______, _______, _______, _______
   //`-----------------------------------------------------------------------------------------------------------'
   ),
 
   [_ADJUST] = LAYOUT_all(
   //,-----------------------------------------------------------------------------------------------------------.
-                 RESET,  RGBRST, AG_NORM, AG_SWAP, XXXXXXX, KC_HOME, KC_PGDN, KC_PGUP,  KC_END,  KC_INS, KC_PSCR,
+      _______,   RESET,  RGBRST, AG_NORM, AG_SWAP, XXXXXXX, KC_HOME, KC_PGDN, KC_PGUP,  KC_END,  KC_INS, KC_PSCR,
   //|--------+--------+--------+--------+--------+--------|--------+--------+--------+--------+--------+--------|
-               RGB_TOG, RGB_HUI, RGB_SAI, RGB_VAI, XXXXXXX, KC_MS_L, KC_MS_D, KC_MS_U, KC_MS_R,     KC_NLCK,
+      KC_CAPS, RGB_TOG, RGB_HUI, RGB_SAI, RGB_VAI, XXXXXXX, KC_MS_L, KC_MS_D, KC_MS_U, KC_MS_R, XXXXXXX, KC_NLCK,
   //|--------+--------+--------+--------+--------+--------|--------+--------+--------+--------+--------+--------|
-               RGB_MOD, RGB_HUD, RGB_SAD, RGB_VAD, XXXXXXX, KC_BTN1, KC_BTN2, XXXXXXX, XXXXXXX,     KC_CAPS,
+      _______, XXXXXXX, RGB_MOD, RGB_HUD, RGB_SAD, RGB_VAD, XXXXXXX, KC_BTN1, KC_BTN2, XXXXXXX, XXXXXXX, _______,
   //|--------+--------+--------+--------+--------+--------|--------+--------+--------+--------+--------+--------|
-      _______, _______,                                _______,                                 _______, KC_CAPS
+      _______, _______, _______,          _______,          _______,          _______, _______, _______, _______
   //`-----------------------------------------------------------------------------------------------------------'
   )
 };
@@ -114,19 +111,15 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   switch (keycode) {
     case KANJI:
       if (record->event.pressed) {
-          register_code16(keymap_config.swap_lalt_lgui ? A(KC_GRV) : KC_LANG2);
-      } else {
-          unregister_code16(keymap_config.swap_lalt_lgui ? A(KC_GRV) : KC_LANG2);
-      }
-    break;
-#ifdef RGBLIGHT_ENABLE
-    case RGBRST:
-        if (record->event.pressed) {
-          eeconfig_update_rgblight_default();
-          rgblight_enable();
+        if (keymap_config.swap_lalt_lgui == false) {
+          register_code(KC_LANG2);
+        } else {
+          SEND_STRING(SS_LALT("`"));
         }
-    break;
-#endif
+      } else {
+        unregister_code(KC_LANG2);
+      }
+      break;
     default:
       result = true;
       break;
@@ -134,29 +127,3 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 
   return result;
 }
-
-void encoder_update_user(uint8_t index, bool clockwise) {
-    if (index == 0) {
-        if (IS_LAYER_ON(_ADJUST)) {
-          if (clockwise) {
-              rgblight_increase_hue_noeeprom();
-          } else {
-              rgblight_decrease_hue_noeeprom();
-          }
-        } else if (IS_LAYER_ON(_LOWER)) {
-          tap_code16((clockwise == true) ? LCTL(KC_Y) : LCTL(KC_Z));
-        } else if (IS_LAYER_ON(_RAISE)) {
-          tap_code16((clockwise == true) ? S(KC_DOWN) : S(KC_UP));
-        } else {
-          tap_code((clockwise == true) ? KC_WH_D : KC_WH_U);
-        }
-
-    }
-}
-
-// for exsample customize of LED inducator
-// bool led_update_user(led_t led_state) {
-//     writePin(D2, IS_LAYER_ON(_LOWER));
-//     writePin(D1, IS_LAYER_ON(_RAISE));
-//     return false;
-// }
