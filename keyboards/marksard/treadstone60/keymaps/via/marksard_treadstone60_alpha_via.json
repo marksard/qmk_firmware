@@ -1,7 +1,7 @@
 {
     "name": "Treadstone60",
-    "vendorId": "0xFEED",
-    "productId": "0xDFA7",
+    "vendorId": "0x04D8",
+    "productId": "0xE95C",
     "lighting": "qmk_rgblight",
     "matrix": {
         "rows": 5,
