@@ -199,13 +199,9 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       break;
     case KANJI:
       if (record->event.pressed) {
-        if (keymap_config.swap_lalt_lgui == false) {
-          register_code(KC_LANG2);
-        } else {
-          register_code16(A(KC_GRV));
-        }
+          register_code16(keymap_config.swap_lalt_lgui ? A(KC_GRV) : G(KC_SPC));
       } else {
-        unregister_code(KC_LANG2);
+          unregister_code16(keymap_config.swap_lalt_lgui ? A(KC_GRV) : G(KC_SPC));
       }
       break;
     #ifdef RGBLIGHT_ENABLE
