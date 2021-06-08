@@ -55,11 +55,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //,---------------------------------------------------------------------------------------------------------------------------------.
         KC_GRV,    KC_F1,    KC_F2,    KC_F3,    KC_F4,    KC_F5,    KC_F6,    KC_F7,    KC_F8,    KC_F9,   KC_F10,   KC_F11,   KC_F12,
   //|---------+---------+---------+---------+---------+---------+---------+---------+---------+---------+---------+---------+---------|
-       _______,    KC_F6,    KC_F7,    KC_F8,    KC_F9,   KC_F10,  KC_HOME,  KC_PGDN,  KC_PGUP,   KC_END,  KC_JYEN,  KC_RBRC,  KC_BSLS,
+       _______,    KC_F6,    KC_F7,    KC_F8,    KC_F9,   KC_F10,  KC_HOME,  KC_PGDN,  KC_PGUP,   KC_END,  KC_LBRC,  KC_RBRC,  KC_BSLS,
   //|---------+---------+---------+---------+---------+---------+---------+---------+---------+---------+---------+---------+---------|
        _______,   KC_F11,   KC_F12,  XXXXXXX,  XXXXXXX,  XXXXXXX,  KC_LEFT,  KC_DOWN,    KC_UP,  KC_RGHT,  XXXXXXX,  XXXXXXX,  _______,
   //|---------+---------+---------+---------+---------+---------+---------+---------+---------+---------+---------+---------+---------|
-       _______,  XXXXXXX,  XXXXXXX,  XXXXXXX,   KC_TAB,    KANJI,   KC_DEL,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  _______,  _______,
+       _______,  XXXXXXX,  XXXXXXX,  XXXXXXX,   KC_TAB,    KANJI,   KC_DEL,  XXXXXXX,  XXXXXXX,  XXXXXXX,  KC_JYEN,  _______,  _______,
   //|---------+---------+---------+---------+---------+---------+---------+---------+---------+---------+---------+^2.75rsft+---------|
        _______,  _______,  _______,            _______,            _______,            _______,  _______,  _______,  _______,  _______
   //`----------------------------------------^^splt1^^----------^spc/splt2^----------^^splt3^^----------------------------------------'
@@ -100,9 +100,12 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   switch (keycode) {
     case KANJI:
       if (record->event.pressed) {
-          register_code16(keymap_config.swap_lalt_lgui ? A(KC_GRV) : G(KC_SPC));
-      } else {
-          unregister_code16(keymap_config.swap_lalt_lgui ? A(KC_GRV) : G(KC_SPC));
+        if (keymap_config.swap_lalt_lgui) {
+          SEND_STRING(SS_LALT("`"));
+        }
+        else {
+          SEND_STRING(SS_LGUI(" "));
+        }
       }
     break;
 #ifdef RGBLIGHT_ENABLE
