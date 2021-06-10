@@ -1,5 +1,6 @@
-#!/bin/bash
+#!/bin/bash -eu
 
+# VIA
 if [ "$1" = "-all" ] || [ "$1" = "-via" ] || [ "$1" = "-release" ]; then
     make treadstone32:via
     make treadstone32/lite:via
@@ -9,6 +10,7 @@ if [ "$1" = "-all" ] || [ "$1" = "-via" ] || [ "$1" = "-release" ]; then
     make marksard/rhymestone:via
     make marksard/treadstone60:via
 fi
+# デフォルト
 if [ "$1" = "-all" ] || [ "$1" = "-default" ] || [ "$1" = "-release" ]; then
     #make marksard/gogofunk:default
     make marksard/leftover30:default
@@ -22,11 +24,13 @@ if [ "$1" = "-all" ] || [ "$1" = "-default" ] || [ "$1" = "-release" ]; then
     make treadstone48/rev1:default
     make treadstone48/rev2:default
 fi
+# 他
 if [ "$1" = "-all" ] || [ "$1" = "-like_jis" ]; then
     make numatreus:like_jis
     make colosseum44:like_jis
     make jj40:like_jis
 fi
+# 他
 if [ "$1" = "-all" ] || [ "$1" = "-marksard" ]; then
     make ai03/equinox:marksard
     make ai03/polaris:marksard
@@ -38,7 +42,8 @@ if [ "$1" = "-all" ] || [ "$1" = "-marksard" ]; then
     make treadstone48/rev1:marksard
     make treadstone48/rev2:marksard
 fi
-if [ "$1" = "-relzip" ] ||  [ "$1" = "-release" ]; then
+# VIAファイル圧縮
+if [ "$1" = "-viapack" ]; then
     cp ./keyboards/treadstone32/keymaps/via/treadstone32_rev1_lite_via.json ./treadstone32_rev1_lite_via.json
     cp ./keyboards/treadstone48/keymaps/via/treadstone48_rev1_via.json ./treadstone48_rev1_via.json
     cp ./keyboards/treadstone48/keymaps/via/treadstone48_rev2_via.json ./treadstone48_rev2_via.json
@@ -53,4 +58,17 @@ if [ "$1" = "-relzip" ] ||  [ "$1" = "-release" ]; then
     zip -r ./_release/marksard_leftover30_via.zip ./marksard_leftover30_via.json ./marksard_leftover30_via.hex
     zip -r ./_release/marksard_rhymestone_rev1_via.zip ./marksard_rhymestone_rev1_via.json ./marksard_rhymestone_rev1_via.hex
     zip -r ./_release/marksard_treadstone60_via.zip ./marksard_treadstone60_via.json ./marksard_treadstone60_via.hex
+fi
+# ファイルサイズチェック（makeで生成時エラーが出てたような気もするけどciのログ出し用途も兼ねて）
+if [ "$1" = "-hexcheck" ] || [ "$1" = "-via" ] || [ "$1" = "-release" ]; then
+    for file in `ls *.hex`; do
+        filesize=`avr-size --target=ihex $file | awk 'NR==2 {print $4}'`
+        oversize=$(($filesize-28672))
+        echo -e 'size:[' $filesize ']\tover:[' $oversize ']\tname:[' $file ']'
+        if [ $oversize -gt 0 ]; then
+            ESC=$(printf '\033')
+            echo "${ESC}[31mERROR: $file file was oversize!!!!!!!!!!${ESC}[m"
+            exit 1
+        fi
+    done
 fi
