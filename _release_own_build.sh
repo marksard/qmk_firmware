@@ -64,7 +64,9 @@ if [ "$1" = "-hexcheck" ] || [ "$1" = "-via" ] || [ "$1" = "-release" ]; then
     for file in `ls *.hex`; do
         filesize=`avr-size --target=ihex $file | awk 'NR==2 {print $4}'`
         oversize=$(($filesize-28672))
-        echo -e 'size:[' $filesize ']\tover:[' $oversize ']\tname:[' $file ']'
+        remining=`printf '%5d' $(($oversize*-1))`
+        filesizepf=`printf '%5d' $filesize`
+        echo -e 'filesize:[' "$filesizepf" ']\tremaining:[' "$remining" ']\tname:[' $file ']'
         if [ $oversize -gt 0 ]; then
             ESC=$(printf '\033')
             echo "${ESC}[31mERROR: $file file was oversize!!!!!!!!!!${ESC}[m"
