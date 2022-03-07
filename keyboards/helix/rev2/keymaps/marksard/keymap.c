@@ -88,6 +88,18 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 #error "undefined keymaps"
 #endif
 
+
+uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
+  switch (keycode) {
+    case KC_BSLO:
+      return TAPPING_LAYER_TERM;
+    case KC_SPLO:
+      return TAPPING_LAYER_TERM;
+    default:
+      return TAPPING_TERM;
+  }
+}
+
 #ifdef SSD1306OLED
 char keylog[24] = {};
 const char code_to_name[60] = {

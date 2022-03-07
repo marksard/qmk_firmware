@@ -20,13 +20,19 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #ifndef CONFIG_USER_H
 #define CONFIG_USER_H
+
+// place overrides here
+#ifdef TAPPING_FORCE_HOLD
+#undef TAPPING_FORCE_HOLD
+#endif
 #ifdef TAPPING_TERM
 #undef TAPPING_TERM
 #endif
-#define TAPPING_TERM 150
+#define TAPPING_TERM 200
 #define IGNORE_MOD_TAP_INTERRUPT
 
-// place overrides here
+#define TAPPING_LAYER_TERM 150 // Custom LT Tapping term
+#define TAPPING_TERM_PER_KEY
 
 #ifdef MOUSEKEY_ENABLE
   #undef MOUSEKEY_INTERVAL
