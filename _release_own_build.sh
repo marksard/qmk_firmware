@@ -1,51 +1,53 @@
 #!/bin/bash -eu
+pwd
 
 # VIA
 if [ "$1" = "-all" ] || [ "$1" = "-via" ] || [ "$1" = "-release" ]; then
-    make marksard/leftover30:via
-    make marksard/rhymestone:via
-    make marksard/treadstone32:via
-    make marksard/treadstone32/lite:via
-    make marksard/treadstone48/rev1:via
-    make marksard/treadstone48/rev2:via
-    make marksard/treadstone60:via
+    qmk compile -kb marksard/leftover30 -km via
+    qmk compile -kb marksard/rhymestone -km via
+    qmk compile -kb marksard/treadstone32 -km via
+    qmk compile -kb marksard/treadstone32/lite -km via
+    qmk compile -kb marksard/treadstone48/rev1 -km via
+    qmk compile -kb marksard/treadstone48/rev2 -km via
+    qmk compile -kb marksard/treadstone60 -km via
 fi
 # デフォルト
 if [ "$1" = "-all" ] || [ "$1" = "-default" ] || [ "$1" = "-release" ]; then
-    make marksard/leftover30:default
-    make marksard/rhymestone:default
-    make marksard/treadstone32:default
-    make marksard/treadstone32/lite:default
-    make marksard/treadstone48/rev1:default
-    make marksard/treadstone48/rev2:default
-    make marksard/treadstone60:default
-    #make marksard/gogofunk:default
-    #make marksard/stoneaxe:default
-    #make marksard/stonehenge30:like_jis
-    make marksard/treadstone38:default
+    qmk compile -kb marksard/leftover30 -km default
+    qmk compile -kb marksard/rhymestone -km default
+    qmk compile -kb marksard/treadstone32 -km default
+    qmk compile -kb marksard/treadstone32/lite -km default
+    qmk compile -kb marksard/treadstone48/rev1 -km default
+    qmk compile -kb marksard/treadstone48/rev2 -km default
+    qmk compile -kb marksard/treadstone60 -km default
+    #qmk compile -kb marksard/gogofunk -km default
+    #qmk compile -kb marksard/stoneaxe -km default
+    #qmk compile -kb marksard/stonehenge30 -km like_jis
+    qmk compile -kb marksard/treadstone38 -km default
 fi
 # 他
 if [ "$1" = "-all" ] || [ "$1" = "-like_jis" ]; then
-    make colosseum44:like_jis
-    make numatreus:like_jis
-    make recompile_keys/nomu30:like_jis
-    make thevankeyboards/minivan:like_jis
+    # qmk compile -kb colosseum44 -km like_jis
+    qmk compile -kb numatreus -km like_jis
+    qmk compile -kb recompile_keys/nomu30 -km like_jis
+    qmk compile -kb thevankeyboards/minivan -km like_jis
 fi
 # 他
 if [ "$1" = "-all" ] || [ "$1" = "-marksard" ]; then
-    make marksard/treadstone48/rev1:marksard
-    make marksard/treadstone48/rev2:marksard
-    mark 40percentclub/gherkin:marksard
-    mark 40percentclub/gherkin:marksard_midi
-    make ai03/equinox:marksard
-    make ai03/polaris:marksard
-    make crkbd/rev1:marksard
-    make emptystring/NQG:marksard
-    make kawaii:marksard
-    make recompile_keys/nomu30:marksard
-    make reviung/reviung33:marksard
-    make satt/vision:marksard
-    make thevankeyboards/minivan:marksard
+    qmk compile -kb marksard/treadstone48/rev1 -km marksard
+    qmk compile -kb marksard/treadstone48/rev2 -km marksard
+    qmk compile -kb 40percentclub/gherkin -km marksard
+    qmk compile -kb 40percentclub/gherkin -km marksard_midi
+    qmk compile -kb ai03/equinox -km marksard
+    qmk compile -kb ai03/polaris -km marksard
+    qmk compile -kb crkbd/rev1 -km marksard
+    qmk compile -kb emptystring/NQG -km marksard
+    qmk compile -kb kawaii -km marksard
+    qmk compile -kb kprepublic/jj40 -km marksard
+    qmk compile -kb recompile_keys/nomu30 -km marksard
+    qmk compile -kb reviung/reviung33 -km marksard
+    qmk compile -kb satt/vision -km marksard
+    qmk compile -kb thevankeyboards/minivan -km marksard
 fi
 # VIAファイル圧縮
 if [ "$1" = "-viapack" ]; then
@@ -64,7 +66,7 @@ if [ "$1" = "-viapack" ]; then
     zip -r ./_release/marksard_rhymestone_rev1_via.zip ./marksard_rhymestone_rev1_via.json ./marksard_rhymestone_rev1_via.hex
     zip -r ./_release/marksard_treadstone60_via.zip ./marksard_treadstone60_via.json ./marksard_treadstone60_via.hex
 fi
-# ファイルサイズチェック（makeで生成時エラーが出てたような気もするけどciのログ出し用途も兼ねて）
+# ファイルサイズチェック（qmk compile -kbで生成時エラーが出てたような気もするけどciのログ出し用途も兼ねて）
 if [ "$1" = "-hexcheck" ] || [ "$1" = "-via" ] || [ "$1" = "-release" ]; then
     for file in `ls *.hex`; do
         filesize=`avr-size --target=ihex $file | awk 'NR==2 {print $4}'`
