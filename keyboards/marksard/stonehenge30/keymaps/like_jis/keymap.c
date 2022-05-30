@@ -1,5 +1,4 @@
 #include QMK_KEYBOARD_H
-#include "keymap_jp.h"
 #include "bootloader.h"
 #ifdef PROTOCOL_LUFA
 #include "lufa.h"
