@@ -58,9 +58,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|--------+--------+--------+--------+--------+--------|--------+--------+--------+--------+--------+--------|
                KC_Z_SF, KC_X_AL,    KC_C,    KC_V,    KC_B,    KC_N,    KC_M, KC_COMM,  KC_DOT,     KC_SLSF,
   //|--------+--------+--------+--------+--------+--------|--------+--------+--------+--------+--------+--------|
-      KC_LCTL, KC_LGUI,                                KC_SPRA,                                 KC_LOWR, KC_RCTL
+      KC_LCTL, KC_LGUI,                                KC_SPRA,                                 KC_LOWR, KC_RCTL,
   //`-----------------------------------------------------------------------------------------------------------'
-  ),
+      KC_WH_U, KC_WH_D
+  // The above 2 keys are used for rotary encoder rotating operation.
+),
 
   [_LOWER] = LAYOUT_all(
   //,-----------------------------------------------------------------------------------------------------------.
@@ -70,8 +72,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|--------+--------+--------+--------+--------+--------|--------+--------+--------+--------+--------+--------|
                KC_11SF, KC_12AL, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,   KC_RO,  KC_GRV, KC_SLSH,     KC_ROSF,
   //|--------+--------+--------+--------+--------+--------|--------+--------+--------+--------+--------+--------|
-      _______, _______,                                KC_AJST,                                 _______, _______
+      _______, _______,                                KC_AJST,                                 _______, _______,
   //`-----------------------------------------------------------------------------------------------------------'
+      LCTL(KC_Z), LCTL(KC_Y)
+  // The above 2 keys are used for rotary encoder rotating operation.
   ),
 
   [_RAISE] = LAYOUT_all(
@@ -82,8 +86,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|--------+--------+--------+--------+--------+--------|--------+--------+--------+--------+--------+--------|
                KC_LSFT, XXXXXXX,  KC_ESC,  KC_TAB,   KANJI,  KC_DEL, KC_COMM,  KC_DOT, KC_BSLS,     KC_ROSF,
   //|--------+--------+--------+--------+--------+--------|--------+--------+--------+--------+--------+--------|
-      _______, _______,                                _______,                                 KC_AJST, _______
+      _______, _______,                                _______,                                 KC_AJST, _______,
   //`-----------------------------------------------------------------------------------------------------------'
+      S(KC_UP), S(KC_DOWN)
+  // The above 2 keys are used for rotary encoder rotating operation.
   ),
 
   [_ADJUST] = LAYOUT_all(
@@ -94,8 +100,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|--------+--------+--------+--------+--------+--------|--------+--------+--------+--------+--------+--------|
                RGB_MOD, RGB_HUD, RGB_SAD, RGB_VAD, XXXXXXX, KC_BTN1, KC_BTN2, XXXXXXX, XXXXXXX,     KC_CAPS,
   //|--------+--------+--------+--------+--------+--------|--------+--------+--------+--------+--------+--------|
-      _______, _______,                                _______,                                 _______, KC_CAPS
+      _______, _______,                                _______,                                 _______, KC_CAPS,
   //`-----------------------------------------------------------------------------------------------------------'
+      RGB_HUD, RGB_HUI  
+  // The above 2 keys are used for rotary encoder rotating operation.
   )
 };
 
@@ -136,20 +144,17 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 }
 
 bool encoder_update_user(uint8_t index, bool clockwise) {
+    keypos_t key;
     if (index == 0) {
-        if (IS_LAYER_ON(_ADJUST)) {
-          if (clockwise) {
-              rgblight_increase_hue_noeeprom();
-          } else {
-              rgblight_decrease_hue_noeeprom();
-          }
-        } else if (IS_LAYER_ON(_LOWER)) {
-          tap_code16((clockwise == true) ? LCTL(KC_Y) : LCTL(KC_Z));
-        } else if (IS_LAYER_ON(_RAISE)) {
-          tap_code16((clockwise == true) ? S(KC_DOWN) : S(KC_UP));
+        if (clockwise) {
+            key.row = 7;
+            key.col = 1;
         } else {
-          tap_code((clockwise == true) ? KC_WH_D : KC_WH_U);
+            key.row = 7;
+            key.col = 0;
         }
+        action_exec((keyevent_t){.key = key, .pressed = true, .time = (timer_read() | 1)});
+        action_exec((keyevent_t){.key = key, .pressed = false, .time = (timer_read() | 1)});
     }
     return true;
 }
