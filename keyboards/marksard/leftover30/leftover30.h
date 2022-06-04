@@ -32,7 +32,6 @@
        k20, k21, k22, k23, k24, k25, k26, k27, k28,   k29,\
    k30, k31,              k32,                   k33, k34,\
    r01, r02 \
-   // The above 2 keys are used for rotary encoder rotating operation.
 ) \
 { \
     { k09,   k08,   k07,   k06,   k05 }, \
@@ -45,3 +44,4 @@
     { k24,   k23,   k22,   k21,   k20 }, \
     { r01,   r02, KC_NO, KC_NO,   k30 } \
 }
+// r01 and r02 keys are used for rotary encoder rotating operation.
