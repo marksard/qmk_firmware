@@ -17,10 +17,10 @@
 #pragma once
 
 // place overrides here
-#define TAPPING_TERM 200
+#define TAPPING_TERM 210
 #define IGNORE_MOD_TAP_INTERRUPT
 
-#define TAPPING_LAYER_TERM 150 // Custom LT Tapping term
+#define TAPPING_LAYER_TERM 160 // Custom LT Tapping term
 #define TAPPING_TERM_PER_KEY
 
 #ifdef MOUSEKEY_ENABLE
@@ -38,3 +38,6 @@
   #undef MOUSEKEY_DELAY
   #define MOUSEKEY_DELAY 0
 #endif
+
+#define USB_POLLING_INTERVAL_MS 15
+#define IGNORE_ATOMIC_BLOCK
