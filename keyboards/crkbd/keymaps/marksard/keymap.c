@@ -21,32 +21,32 @@ enum layer_number {
 };
 
 enum custom_keycodes {
-  RGBRST = SAFE_RANGE,
+  KANJI = SAFE_RANGE,
+  RGBRST,
   LOWER,
   RAISE,
-  KANJI,
 };
 
-// Layer Mode aliases
+// Layer tap
+#define KC_BSLO  LT(_LOWER, KC_BSPC)
+#define KC_SPRA  LT(_RAISE, KC_SPC)
 #define KC_MLAD  MO(_ADJUST)
 
 // Base layer mod tap
 #define KC_A_CT  LCTL_T(KC_A)
 #define KC_Z_SF  LSFT_T(KC_Z)
 #define KC_ENCT  RCTL_T(KC_ENT)
-#define KC_ROSF  RSFT_T(KC_RO)
-#define KC_SSSF  RSFT_T(KC_SLSH)
-#define KC_ALAP  RALT_T(KC_APP)
+#define KC_SLSF  RSFT_T(KC_SLSH)
 
 // Lower layer mod tap
 #define KC_F6CT  LCTL_T(KC_F6)
 #define KC_11SF  LSFT_T(KC_F11)
 #define KC_QUCT  RCTL_T(KC_QUOT)
-#define KC_GRSF  RSFT_T(KC_GRV)
+#define KC_ROSF  RSFT_T(KC_RO)
 
-// Layer tap
-#define KC_BSLO  LT(_LOWER, KC_BSPC)
-#define KC_SPRA  LT(_RAISE, KC_SPC)
+// Other
+#define KC_GRSF  RSFT_T(KC_GRV)
+#define KC_ALAP  RALT_T(KC_APP)
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [_BASE] = LAYOUT_split_3x6_3( \
@@ -55,7 +55,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
       KC_LCTL, KC_A_CT,    KC_S,    KC_D,    KC_F,    KC_G,                         KC_H,    KC_J,    KC_K,    KC_L, KC_ENCT, KC_ENCT,\
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      KC_LSFT, KC_Z_SF,    KC_X,    KC_C,    KC_V,    KC_B,                         KC_N,    KC_M, KC_COMM,  KC_DOT, KC_SSSF, KC_ROSF,\
+      KC_LSFT, KC_Z_SF,    KC_X,    KC_C,    KC_V,    KC_B,                         KC_N,    KC_M, KC_COMM,  KC_DOT, KC_SLSF, KC_ROSF,\
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
                                           KC_LALT, KC_LGUI, KC_BSLO,    KC_SPRA, KC_MLAD, KC_ALAP \
                                       //`--------------------------'  `--------------------------'
@@ -67,7 +67,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
       _______, KC_F6CT,   KC_F7,   KC_F8,   KC_F9,  KC_F10,                      XXXXXXX, XXXXXXX, XXXXXXX, KC_SCLN, KC_QUCT, _______,\
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      _______, KC_11SF,  KC_F12,  KC_ESC,  KC_TAB,   KANJI,                       KC_DEL, XXXXXXX, XXXXXXX,   KC_RO, KC_GRSF, _______,\
+      _______, KC_11SF,  KC_F12,  KC_ESC,  KC_TAB,   KANJI,                       KC_DEL, XXXXXXX, KC_JYEN,  KC_GRV, KC_ROSF, _______,\
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
                                           RGB_MOD, RGB_TOG, _______,    _______, _______, _______ \
                                       //`--------------------------'  `--------------------------'
@@ -79,7 +79,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
       _______, KC_LCTL, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                      KC_LEFT, KC_DOWN,   KC_UP, KC_RGHT, KC_RCTL, _______,\
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      _______, KC_LSFT, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                      XXXXXXX, XXXXXXX, KC_COMM,  KC_DOT, KC_SSSF, _______,\
+      _______, KC_LSFT, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                      XXXXXXX, XXXXXXX, KC_COMM,  KC_DOT, KC_SLSF, _______,\
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
                                           _______, _______, _______,    _______, RGB_TOG, RGB_MOD \
                                       //`--------------------------'  `--------------------------'
@@ -205,13 +205,12 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         break;
     case KANJI:
       if (record->event.pressed) {
-        if (keymap_config.swap_lalt_lgui == false) {
-          register_code(KC_LANG2);
-        } else {
+        if (keymap_config.swap_lalt_lgui) {
           SEND_STRING(SS_LALT("`"));
         }
-      } else {
-        unregister_code(KC_LANG2);
+        else {
+          SEND_STRING(SS_LGUI(" "));
+        }
       }
       break;
     #ifdef RGBLIGHT_ENABLE

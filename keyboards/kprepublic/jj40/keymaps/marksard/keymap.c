@@ -23,20 +23,22 @@ enum layer_number {
 };
 
 enum custom_keycodes {
-  LOWER = SAFE_RANGE,
-  KANJI,
-  RGBRST
+  KANJI = SAFE_RANGE,
+  RGBRST,
 };
 
+// Layer tap
 #define KC_BSLO  LT(_LOWER, KC_BSPC)
 #define KC_SPRA  LT(_RAISE, KC_SPC)
 #define KC_AJST  MO(_ADJUST)
 
+// Base layer mod tap
 #define KC_A_CT  LCTL_T(KC_A)
 #define KC_Z_SF  LSFT_T(KC_Z)
 #define KC_ENCT  RCTL_T(KC_ENT)
 #define KC_SLSF  RSFT_T(KC_SLSH)
 
+// Lower layer mod tap
 #define KC_F6CT  LCTL_T(KC_F6)
 #define KC_11SF  LSFT_T(KC_F11)
 #define KC_QUCT  RCTL_T(KC_QUOT)
@@ -53,7 +55,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 [1] = LAYOUT_ortho_4x12(
     KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_NO,   KC_NO, KC_MINS,  KC_EQL, KC_LBRC, KC_RBRC, KC_BSLS, 
   KC_F6CT,   KC_F7,   KC_F8,   KC_F9,  KC_F10,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO, KC_SCLN, KC_QUCT, 
-  KC_11SF,  KC_F12,  KC_ESC,  KC_TAB,   KANJI,  KC_DEL,   KC_NO,  KC_DEL,   KC_NO,  KC_GRV, KC_JYEN, KC_ROSF, 
+  KC_11SF,  KC_F12,  KC_ESC,  KC_TAB,   KANJI,  KC_DEL,   KC_NO,  KC_DEL,   KC_NO, KC_JYEN,  KC_GRV, KC_ROSF, 
   KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,   KC_NO, KC_AJST, KC_AJST, KC_AJST, KC_TRNS, KC_TRNS, KC_TRNS
 ),
 [2] = LAYOUT_ortho_4x12(
@@ -63,9 +65,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   KC_TRNS, KC_TRNS, KC_TRNS, KC_AJST, KC_AJST, KC_AJST,   KC_NO, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS
 ),
 [3] = LAYOUT_ortho_4x12(
-  RESET,    RGBRST, AG_NORM, AG_SWAP,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO, 
-  RGB_TOG, RGB_HUI, RGB_SAI, RGB_VAI,   KC_NO,   KC_NO,   KC_NO, KC_HOME, KC_PGDN, KC_PGUP,  KC_END,   KC_NO, 
-  RGB_MOD, RGB_HUI, RGB_SAD, RGB_VAD,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO, 
+  RESET,    RGBRST, AG_NORM, AG_SWAP,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,  KC_INS, KC_PSCR, 
+  RGB_TOG, RGB_HUI, RGB_SAI, RGB_VAI,   KC_NO,   KC_NO,   KC_NO, KC_HOME, KC_PGDN, KC_PGUP,  KC_END, KC_NLCK, 
+  RGB_MOD, RGB_HUI, RGB_SAD, RGB_VAD,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO, KC_CAPS, 
   KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,   KC_NO,   KC_NO, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS
 )
 

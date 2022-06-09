@@ -22,20 +22,21 @@ enum layer_number {
 };
 
 enum custom_keycodes {
-  LOWER = SAFE_RANGE,
-  ADJUST,
-  KANJI,
-  RGBRST
+  KANJI = SAFE_RANGE,
+  RGBRST,
 };
 
-#define KC_CPCT  LCTL_T(KC_CAPS)
-#define KC_ENSF  RSFT_T(KC_ENT)
-#define KC_ROSF  RSFT_T(KC_RO)
-#define KC_ALAP  RALT_T(KC_APP)
-
+// Layer tap
 #define KC_BSLO  LT(_LOWER, KC_BSPC)
 #define KC_SPLO  LT(_LOWER, KC_SPC)
 #define KC_AJST  MO(_ADJUST)
+
+// Base layer mod tap
+#define KC_ENCT  RCTL_T(KC_ENT)
+#define KC_ROSF  RSFT_T(KC_RO)
+
+// Other
+#define KC_ALAP  RALT_T(KC_APP)
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [_BASE] = LAYOUT_60_tsangan_hhkb(
@@ -44,7 +45,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|---------+---------+---------+---------+---------+---------+---------+---------+---------+---------+---------+---------+---------+---------+---------|
         KC_TAB,     KC_Q,     KC_W,     KC_E,     KC_R,     KC_T,     KC_Y,     KC_U,     KC_I,     KC_O,     KC_P,  KC_LBRC,  KC_RBRC,            KC_BSPC,
   //|---------+---------+---------+---------+---------+---------+---------+---------+---------+---------+---------+---------+---------+---------+---------|
-       KC_LCTL,     KC_A,     KC_S,     KC_D,     KC_F,     KC_G,     KC_H,     KC_J,     KC_K,     KC_L,  KC_SCLN,  KC_QUOT,                      KC_ENSF,
+       KC_LCTL,     KC_A,     KC_S,     KC_D,     KC_F,     KC_G,     KC_H,     KC_J,     KC_K,     KC_L,  KC_SCLN,  KC_QUOT,                      KC_ENCT,
   //|---------+---------+---------+---------+---------+---------+---------+---------+---------+---------+---------+---------+---------+---------+---------|
        KC_LSFT,     KC_Z,     KC_X,     KC_C,     KC_V,     KC_B,     KC_N,     KC_M,  KC_COMM,   KC_DOT,  KC_SLSH,                      KC_ROSF,  KC_ROSF,
   //|---------+---------+---------+---------+---------+---------+---------+---------+---------+---------+---------+---------+---------+^2.75rsft+---------|
@@ -60,7 +61,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|---------+---------+---------+---------+---------+---------+---------+---------+---------+---------+---------+---------+---------+---------+---------|
        _______,   KC_F11,   KC_F12,  XXXXXXX,  XXXXXXX,  XXXXXXX,  KC_LEFT,  KC_DOWN,    KC_UP,  KC_RGHT,  XXXXXXX,  _______,                      _______,
   //|---------+---------+---------+---------+---------+---------+---------+---------+---------+---------+---------+---------+---------+---------+---------|
-       _______,  XXXXXXX,  XXXXXXX,  XXXXXXX,    KANJI,    KANJI,   KC_DEL,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,                      _______,  _______,
+       _______,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,    KANJI,   KC_DEL,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,                      _______,  _______,
   //|---------+---------+---------+---------+---------+---------+---------+---------+---------+---------+---------+---------+---------+---------+---------|
        _______,  _______,  _______,                                          _______,                                          _______,  _______,  _______
   //`-----------------------------------------------------------------------------------------------------------------------------------------------------'
@@ -68,7 +69,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   [_ADJUST] = LAYOUT_60_tsangan_hhkb(
   //,-----------------------------------------------------------------------------------------------------------------------------------------------------.
-       _______,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,   KC_INS,  KC_PSCR,  KC_PSCR,
+       _______,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,   KC_INS,  KC_PSCR,
   //|---------+---------+---------+---------+---------+---------+---------+---------+---------+---------+---------+---------+---------+---------+---------|
        _______,    RESET,   RGBRST,  AG_NORM,  AG_SWAP,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,            KC_NLCK,
   //|---------+---------+---------+---------+---------+---------+---------+---------+---------+---------+---------+---------+---------+---------+---------|
@@ -87,13 +88,12 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   switch (keycode) {
     case KANJI:
       if (record->event.pressed) {
-        if (keymap_config.swap_lalt_lgui == false) {
-          register_code(KC_LANG2);
-        } else {
+        if (keymap_config.swap_lalt_lgui) {
           SEND_STRING(SS_LALT("`"));
         }
-      } else {
-        unregister_code(KC_LANG2);
+        else {
+          SEND_STRING(SS_LGUI(" "));
+        }
       }
       break;
     #ifdef RGBLIGHT_ENABLE

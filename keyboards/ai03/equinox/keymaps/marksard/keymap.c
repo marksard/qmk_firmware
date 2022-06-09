@@ -22,36 +22,39 @@
 */
 
 enum layer_number {
-  _BASE = 0,
+  _BASE,
   _LOWER,
   _RAISE,
   _ADJUST,
 };
 
 enum custom_keycodes {
-  RGBRST = SAFE_RANGE,
-  LOWER,
-  RAISE,
-  KANJI,
+  KANJI = SAFE_RANGE,
+  RGBRST,
 };
 
-// #define KC_ESAD  LT(_ADJUST, KC_ESC)
-// #define KC_BSLO  LT(_LOWER, KC_BSPC)
+// Layer tap
 #define KC_LOWR  MO(_LOWER)
 #define KC_SPRA  LT(_RAISE, KC_SPC)
 #define KC_AJST  MO(_ADJUST)
 
-#define KC_ENSF  RSFT_T(KC_ENT)
-#define KC_ALAP  RALT_T(KC_APP)
+// Base layer mod tap
+#define KC_ENCT  RCTL_T(KC_ENT)
 #define KC_SLSF  RSFT_T(KC_SLSH)
-#define KC_QUSF  RSFT_T(KC_QUOT)
+
+// Lower layer mod tap
+#define KC_QUCT  RCTL_T(KC_QUOT)
+#define KC_ROSF  RSFT_T(KC_RO)
+
+// Other
+#define KC_ALAP  RALT_T(KC_APP)
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [_BASE] = LAYOUT_all(
   //,-----------------------------------------------------------------------------------------------------------.
        KC_TAB,    KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    KC_Y,    KC_U,    KC_I,    KC_O,    KC_P, KC_BSPC,
   //|--------+--------+--------+--------+--------+--------|--------+--------+--------+--------+--------+--------|
-      KC_LCTL,    KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    KC_H,    KC_J,    KC_K,    KC_L, KC_ENSF, KC_ENSF,
+      KC_LCTL,    KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    KC_H,    KC_J,    KC_K,    KC_L, KC_ENCT, KC_ENCT,
   //|--------+--------+--------+--------+--------+--------|--------+--------+--------+--------+--------+--------|
       KC_LSFT, KC_LSFT,    KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_N,    KC_M, KC_COMM,  KC_DOT, KC_SLSF,
   //|--------+--------+--------+--------+--------+--------|--------+--------+--------+--------+--------+--------|
@@ -61,11 +64,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   [_LOWER] = LAYOUT_all(
   //,-----------------------------------------------------------------------------------------------------------.
-       KC_ESC,   KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5, KC_MINS,  KC_EQL, KC_JYEN, KC_LBRC, KC_RBRC, KC_BSLS,
+       KC_GRV,   KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5, KC_MINS,  KC_EQL, KC_JYEN, KC_LBRC, KC_RBRC, KC_BSLS,
   //|--------+--------+--------+--------+--------+--------|--------+--------+--------+--------+--------+--------|
-      _______,   KC_F6,   KC_F7,   KC_F8,   KC_F9,  KC_F10, XXXXXXX, XXXXXXX, XXXXXXX, KC_SCLN, KC_QUSF, KC_QUSF,
+      _______,   KC_F6,   KC_F7,   KC_F8,   KC_F9,  KC_F10, XXXXXXX, XXXXXXX, XXXXXXX, KC_SCLN, KC_QUCT, KC_QUCT,
   //|--------+--------+--------+--------+--------+--------|--------+--------+--------+--------+--------+--------|
-      _______, _______,  KC_F11,  KC_F12, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,  KC_GRV,   KC_RO,
+      _______, _______,  KC_F11,  KC_F12, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_JYEN,  KC_GRV, KC_ROSF,
   //|--------+--------+--------+--------+--------+--------|--------+--------+--------+--------+--------+--------|
       _______, _______, _______,          _______,          KC_AJST,          _______, _______, _______, _______
   //`-----------------------------------------------------------------------------------------------------------'
@@ -77,19 +80,19 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|--------+--------+--------+--------+--------+--------|--------+--------+--------+--------+--------+--------|
       _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_LEFT, KC_DOWN,   KC_UP, KC_RGHT, _______, _______,
   //|--------+--------+--------+--------+--------+--------|--------+--------+--------+--------+--------+--------|
-      _______, _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,   KANJI,  KC_DEL, KC_COMM,  KC_DOT, KC_BSLS, _______,
+      _______, _______, XXXXXXX, XXXXXXX,  KC_ESC,  KC_TAB,   KANJI,  KC_DEL, XXXXXXX, KC_COMM,  KC_DOT, KC_SLSF,
   //|--------+--------+--------+--------+--------+--------|--------+--------+--------+--------+--------+--------|
-      _______, _______, _______,          _______,          _______,          _______, _______, _______, _______
+      _______, _______, _______,          _______,          _______,          _______, KC_AJST, _______, _______
   //`-----------------------------------------------------------------------------------------------------------'
   ),
 
   [_ADJUST] = LAYOUT_all(
   //,-----------------------------------------------------------------------------------------------------------.
-      _______,   RESET,  RGBRST, AG_NORM, AG_SWAP, XXXXXXX, KC_HOME, KC_PGDN, KC_PGUP,  KC_END,  KC_INS, KC_PSCR,
+      _______,   RESET,  RGBRST, AG_NORM, AG_SWAP, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,  KC_INS, KC_PSCR,
   //|--------+--------+--------+--------+--------+--------|--------+--------+--------+--------+--------+--------|
-      KC_CAPS, RGB_TOG, RGB_HUI, RGB_SAI, RGB_VAI, XXXXXXX, KC_MS_L, KC_MS_D, KC_MS_U, KC_MS_R, XXXXXXX, KC_NLCK,
+      KC_CAPS, RGB_TOG, RGB_HUI, RGB_SAI, RGB_VAI, XXXXXXX, KC_HOME, KC_PGDN, KC_PGUP,  KC_END, XXXXXXX, KC_NLCK,
   //|--------+--------+--------+--------+--------+--------|--------+--------+--------+--------+--------+--------|
-      _______, XXXXXXX, RGB_MOD, RGB_HUD, RGB_SAD, RGB_VAD, XXXXXXX, KC_BTN1, KC_BTN2, XXXXXXX, XXXXXXX, _______,
+      _______, XXXXXXX, RGB_MOD, RGB_HUD, RGB_SAD, RGB_VAD, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, _______,
   //|--------+--------+--------+--------+--------+--------|--------+--------+--------+--------+--------+--------|
       _______, _______, _______,          _______,          _______,          _______, _______, _______, _______
   //`-----------------------------------------------------------------------------------------------------------'
@@ -111,13 +114,12 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   switch (keycode) {
     case KANJI:
       if (record->event.pressed) {
-        if (keymap_config.swap_lalt_lgui == false) {
-          register_code(KC_LANG2);
-        } else {
+        if (keymap_config.swap_lalt_lgui) {
           SEND_STRING(SS_LALT("`"));
         }
-      } else {
-        unregister_code(KC_LANG2);
+        else {
+          SEND_STRING(SS_LGUI(" "));
+        }
       }
       break;
     default:
