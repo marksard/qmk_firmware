@@ -30,7 +30,7 @@ enum custom_keycodes {
 // Layer tap
 #define KC_BSLO  LT(_LOWER, KC_BSPC)
 #define KC_SPRA  LT(_RAISE, KC_SPC)
-#define KC_AJST  MO(_ADJUST)
+#define KC_MLAD  MO(_ADJUST)
 
 // Base layer mod tap
 #define KC_A_CT  LCTL_T(KC_A)
@@ -56,13 +56,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_NO,   KC_NO, KC_MINS,  KC_EQL, KC_LBRC, KC_RBRC, KC_BSLS, 
   KC_F6CT,   KC_F7,   KC_F8,   KC_F9,  KC_F10,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO, KC_SCLN, KC_QUCT, 
   KC_11SF,  KC_F12,  KC_ESC,  KC_TAB,   KANJI,  KC_DEL,   KC_NO,  KC_DEL,   KC_NO, KC_JYEN,  KC_GRV, KC_ROSF, 
-  KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,   KC_NO, KC_AJST, KC_AJST, KC_AJST, KC_TRNS, KC_TRNS, KC_TRNS
+  KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,   KC_NO, KC_MLAD, KC_MLAD, KC_MLAD, KC_TRNS, KC_TRNS, KC_TRNS
 ),
 [2] = LAYOUT_ortho_4x12(
      KC_1,    KC_2,    KC_3,    KC_4,    KC_5,   KC_NO,   KC_NO,    KC_6,    KC_7,    KC_8,    KC_9,    KC_0, 
   KC_LCTL,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO, KC_LEFT, KC_DOWN,   KC_UP, KC_RGHT, KC_LCTL, 
   KC_LSFT,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO, KC_COMM,  KC_DOT, KC_SLSF, 
-  KC_TRNS, KC_TRNS, KC_TRNS, KC_AJST, KC_AJST, KC_AJST,   KC_NO, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS
+  KC_TRNS, KC_TRNS, KC_TRNS, KC_MLAD, KC_MLAD, KC_MLAD,   KC_NO, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS
 ),
 [3] = LAYOUT_ortho_4x12(
   RESET,    RGBRST, AG_NORM, AG_SWAP,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,  KC_INS, KC_PSCR, 

@@ -34,7 +34,7 @@ enum custom_keycodes {
 
 #define KC_BSLO  LT(_LOWER, KC_BSPC)
 #define KC_SPLO  LT(_LOWER, KC_SPC)
-#define KC_AJST  MO(_ADJUST)
+#define KC_MLAD  MO(_ADJUST)
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [_BASE] = LAYOUT_full(
@@ -47,7 +47,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|---------+---------+---------+---------+---------+---------+---------+---------+---------+---------+---------+---------+---------|
        KC_LSFT,     KC_Z,     KC_X,     KC_C,     KC_V,     KC_B,     KC_N,     KC_M,  KC_COMM,   KC_DOT,  KC_SLSH,  KC_ROSF,  KC_ROSF,
   //|---------+---------+---------+---------+---------+---------+---------+---------+---------+---------+---------+^2.75rsft+---------|
-       KC_LCTL,  KC_LALT,  KC_LGUI,            KC_BSLO,            KC_SPLO,            KC_SPLO,  KC_AJST,  KC_ALAP,   KC_APP,  KC_RCTL
+       KC_LCTL,  KC_LALT,  KC_LGUI,            KC_BSLO,            KC_SPLO,            KC_SPLO,  KC_MLAD,  KC_ALAP,   KC_APP,  KC_RCTL
   //`----------------------------------------^^splt1^^----------^spc/splt2^----------^^splt3^^----------------------------------------'
   ),
 
