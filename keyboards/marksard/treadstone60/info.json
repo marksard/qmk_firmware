@@ -5,7 +5,7 @@
     "width": 15,
     "height": 5,
     "layouts": {
-        "LAYOUT": {
+        "LAYOUT_full": {
             "layout": [
                 {
                     "label": "Esc",
