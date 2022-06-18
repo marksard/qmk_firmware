@@ -9,7 +9,6 @@
 #define DEVICE_VER      0x0001
 #define MANUFACTURER    qmkbuilder
 #define PRODUCT         NCR 80HOT
-#define DESCRIPTION     NCR 80HOT
 
 /* key matrix size */
 #define MATRIX_ROWS 11
@@ -29,9 +28,6 @@
 #define BACKLIGHT_LEVELS 3
 #endif
 
-/* Set 0 if debouncing isn't needed */
-#define DEBOUNCING_DELAY 5
-
 /* Mechanical locking support. Use KC_LCAP, KC_LNUM or KC_LSCR instead in keymap */
 #define LOCKING_SUPPORT_ENABLE
 
@@ -43,9 +39,6 @@
     keyboard_report->mods == (MOD_BIT(KC_LSHIFT) | MOD_BIT(KC_RSHIFT)) \
 )
 
-/* prevent stuck modifiers */
-#define PREVENT_STUCK_MODIFIERS
-
 #define RGB_DI_PIN E2
 #ifdef RGB_DI_PIN
 #define RGBLIGHT_ANIMATIONS
@@ -55,7 +48,7 @@
 #define RGBLIGHT_VAL_STEP 8
 #endif
 
-#define TAPPING_TERM 150
+#define TAPPING_TERM 140
 #define IGNORE_MOD_TAP_INTERRUPT
 
 #endif
