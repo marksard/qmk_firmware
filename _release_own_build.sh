@@ -48,6 +48,7 @@ if [ "$1" = "-all" ] || [ "$1" = "-marksard" ]; then
     qmk compile -kb reviung/reviung33 -km marksard
     qmk compile -kb satt/vision -km marksard
     qmk compile -kb thevankeyboards/minivan -km marksard
+    qmk compile -kb 0_mark_kai_pcbs/ncr80_hot -km default
 fi
 # VIAファイル圧縮
 if [ "$1" = "-viapack" ]; then
