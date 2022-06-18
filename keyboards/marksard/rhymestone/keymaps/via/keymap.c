@@ -24,31 +24,37 @@ enum layer_number {
 };
 
 enum custom_keycodes {
-  LOWER = SAFE_RANGE,
-  RAISE,
-  ADJUST,
-  KANJI,
+  KANJI = SAFE_RANGE,
   RGBRST
 };
 
+// Layer tap
+#define KC_BSLO  LT(_LOWER, KC_BSPC)
+#define KC_SPRA  LT(_RAISE, KC_SPC)
+#define KC_MLAD  MO(_ADJUST)
+
 // Base layer mod tap
+#define KC_A_CT  LCTL_T(KC_A)
 #define KC_Z_SF  LSFT_T(KC_Z)
+#define KC_ENCT  RCTL_T(KC_ENT)
 #define KC_SLSF  RSFT_T(KC_SLSH)
 
 // Lower layer mod tap
+#define KC_F6CT  LCTL_T(KC_F6)
 #define KC_11SF  LSFT_T(KC_F11)
-#define KC_GRSF  RSFT_T(KC_GRV)
+#define KC_QUCT  RCTL_T(KC_QUOT)
+#define KC_ROSF  RSFT_T(KC_RO)
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [_BASE] = LAYOUT_ortho_4x10(
   //,---------------------------------------------------------------------------------------------------.
           KC_Q,     KC_W,     KC_E,     KC_R,     KC_T,     KC_Y,     KC_U,     KC_I,     KC_O,     KC_P,
   //|---------+---------+---------+---------+---------+---------+---------+---------+---------+---------|
-          KC_A,     KC_S,     KC_D,     KC_F,     KC_G,     KC_H,     KC_J,     KC_K,     KC_L,   KC_ENT,
+       KC_A_CT,     KC_S,     KC_D,     KC_F,     KC_G,     KC_H,     KC_J,     KC_K,     KC_L,  KC_ENCT,
   //|---------+---------+---------+---------+---------+---------+---------+---------+---------+---------|
        KC_Z_SF,     KC_X,     KC_C,     KC_V,     KC_B,     KC_N,     KC_M,  KC_COMM,   KC_DOT,  KC_SLSF,
   //`---------+---------+---------+---------+---------+---------+---------+---------+---------+---------'
-       KC_LCTL,  KC_LALT,  KC_LGUI,    LOWER,  KC_BSPC,   KC_SPC,    RAISE,  KC_RGUI,   KC_APP,  KC_RCTL
+       KC_LCTL,  KC_LALT,  KC_LGUI,  KC_BSLO,  KC_BSLO,  KC_SPRA,  KC_SPRA,  KC_RGUI,   KC_APP,  KC_RCTL
   //,---------------------------------------------------------------------------------------------------.
   ),
 
@@ -56,11 +62,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //,---------------------------------------------------------------------------------------------------.
          KC_F1,    KC_F2,    KC_F3,    KC_F4,    KC_F5,  KC_MINS,   KC_EQL,  KC_LBRC,  KC_RBRC,  KC_BSLS,
   //|---------+---------+---------+---------+---------+---------+---------+---------+---------+---------|
-         KC_F6,    KC_F7,    KC_F8,    KC_F9,   KC_F10,  XXXXXXX,  XXXXXXX,  XXXXXXX,  KC_SCLN,  KC_QUOT,
+       KC_F6CT,    KC_F7,    KC_F8,    KC_F9,   KC_F10,  XXXXXXX,  XXXXXXX,  XXXXXXX,  KC_SCLN,  KC_QUCT,
   //|---------+---------+---------+---------+---------+---------+---------+---------+---------+---------|
-       KC_11SF,   KC_F12,   KC_ESC,   KC_TAB,    KANJI,   KC_DEL,  XXXXXXX,  KC_JYEN,    KC_RO,  KC_GRSF,
+       KC_11SF,   KC_F12,   KC_ESC,   KC_TAB,    KANJI,   KC_DEL,  XXXXXXX,  KC_JYEN,   KC_GRV,  KC_ROSF,
   //`---------+---------+---------+---------+---------+---------+---------+---------+---------+---------'
-       _______,  _______,  _______,  _______,   KC_DEL,  _______,  _______,  _______,  _______,  _______
+       _______,  _______,  _______,  _______,   KC_DEL,  KC_MLAD,  KC_MLAD,  _______,  _______,  _______
   //,---------------------------------------------------------------------------------------------------.
   ),
 
@@ -68,11 +74,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //,---------------------------------------------------------------------------------------------------.
           KC_1,     KC_2,     KC_3,     KC_4,     KC_5,     KC_6,     KC_7,     KC_8,     KC_9,     KC_0,
   //|---------+---------+---------+---------+---------+---------+---------+---------+---------+---------|
-       KC_LSFT,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  KC_LEFT,  KC_DOWN,    KC_UP,  KC_RGHT,  KC_RSFT,
+       KC_LCTL,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  KC_LEFT,  KC_DOWN,    KC_UP,  KC_RGHT,  KC_LCTL,
   //|---------+---------+---------+---------+---------+---------+---------+---------+---------+---------|
-       XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  KC_MINS,    KC_RO,  KC_COMM,   KC_DOT,  KC_SLSF,
+       KC_LSFT,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  KC_COMM,   KC_DOT,  KC_SLSF,
   //`---------+---------+---------+---------+---------+---------+---------+---------+---------+---------'
-       _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______
+       _______,  _______,  _______,  KC_MLAD,  KC_MLAD,  _______,  _______,  _______,  _______,  _______
   //,---------------------------------------------------------------------------------------------------.
   ),
 
@@ -80,9 +86,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //,---------------------------------------------------------------------------------------------------.
          RESET,   RGBRST,  AG_NORM,  AG_SWAP,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,   KC_INS,  KC_PSCR,
   //|---------+---------+---------+---------+---------+---------+---------+---------+---------+---------|
-       RGB_TOG,  RGB_HUI,  RGB_SAI,  RGB_VAI,  XXXXXXX,  KC_MS_L,  KC_MS_D,  KC_MS_U,  KC_MS_R,  KC_NLCK,
+       RGB_TOG,  RGB_HUI,  RGB_SAI,  RGB_VAI,  XXXXXXX,  KC_HOME,  KC_PGDN,  KC_PGUP,   KC_END,  KC_NLCK,
   //|---------+---------+---------+---------+---------+---------+---------+---------+---------+---------|
-       RGB_MOD,  RGB_HUD,  RGB_SAD,  RGB_VAD,  XXXXXXX,  KC_BTN1,  KC_BTN2,  XXXXXXX,  XXXXXXX,  XXXXXXX,
+       RGB_MOD,  RGB_HUD,  RGB_SAD,  RGB_VAD,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  KC_CAPS,
   //`---------+---------+---------+---------+---------+---------+---------+---------+---------+---------'
        _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______
   //,---------------------------------------------------------------------------------------------------.
@@ -90,27 +96,30 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 };
 
 #define L_BASE _BASE
-#define L_LOWER (1<<_LOWER)
-#define L_RAISE (1<<_RAISE)
-#define L_ADJUST (1<<_ADJUST)
-#define L_ADJUST_TRI (L_ADJUST|L_RAISE|L_LOWER)
+#define L_LOWER ((layer_state_t)1<<_LOWER)
+#define L_RAISE ((layer_state_t)1<<_RAISE)
+#define L_ADJUST ((layer_state_t)1<<_ADJUST)
+#define L_ADJUST_1 (L_ADJUST|L_LOWER)
+#define L_ADJUST_2 (L_ADJUST|L_RAISE)
 
 #ifdef OLED_DRIVER_ENABLE
 #include <stdio.h>
 #include <string.h>
+#include "../common/oled_helper.h"
 
 typedef struct {
   uint8_t state;
   char name[8];
 }LAYER_DISPLAY_NAME;
 
-#define LAYER_DISPLAY_MAX 5
+#define LAYER_DISPLAY_MAX 6
 const LAYER_DISPLAY_NAME layer_display_name[LAYER_DISPLAY_MAX] = {
   {L_BASE, "Base"},
-  {L_BASE + 1, "Base"},
   {L_LOWER, "Lower"},
   {L_RAISE, "Raise"},
-  {L_ADJUST_TRI, "Adjust"}
+  {L_ADJUST, "Adjust"},
+  {L_ADJUST_1, "Adjust"},
+  {L_ADJUST_2, "Adjust"}
 };
 
 static inline const char* get_leyer_status(void) {
@@ -119,7 +128,7 @@ static inline const char* get_leyer_status(void) {
     if (layer_state == 0 && layer_display_name[i].state == default_layer_state) {
 
       return layer_display_name[i].name;
-    } else if (layer_state != 0 && layer_display_name[i].state == layer_state) {
+    } else if (layer_state != 0 && (layer_display_name[i].state == layer_state)) {
 
       return layer_display_name[i].name;
     }
@@ -140,13 +149,13 @@ static inline void render_keymap_status(void) {
   oled_write(layer_status_buf, false);
 }
 
-#define UPDATE_KEYMAP_STATUS() update_keymap_status()
-
 static inline void render_status(void) {
 
   UPDATE_LED_STATUS();
   RENDER_LED_STATUS();
+  update_keymap_status();
   render_keymap_status();
+  UPDATE_LOCK_STATUS();
   RENDER_LOCK_STATUS();
   RENDER_KEY_STATUS();
 }
@@ -167,11 +176,18 @@ void oled_task_user(void) {
   }
 }
 
-#else
-
-#define UPDATE_KEYMAP_STATUS()
-
 #endif
+
+uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
+  switch (keycode) {
+    case KC_BSLO:
+      return TAPPING_LAYER_TERM;
+    case KC_SPRA:
+      return TAPPING_LAYER_TERM;
+    default:
+      return TAPPING_TERM;
+  }
+}
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 
@@ -179,24 +195,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 
   bool result = false;
   switch (keycode) {
-    case LOWER:
-      if (record->event.pressed) {
-        layer_on(_LOWER);
-      } else {
-        layer_off(_LOWER);
-      }
-
-      update_tri_layer(_LOWER, _RAISE, _ADJUST);
-      break;
-    case RAISE:
-      if (record->event.pressed) {
-        layer_on(_RAISE);
-      } else {
-        layer_off(_RAISE);
-      }
-
-      update_tri_layer(_LOWER, _RAISE, _ADJUST);
-      break;
     case KANJI:
       if (record->event.pressed) {
         if (keymap_config.swap_lalt_lgui) {
@@ -220,6 +218,5 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       break;
   }
 
-  UPDATE_KEYMAP_STATUS();
   return result;
 }

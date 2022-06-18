@@ -1,8 +1,8 @@
 MOUSEKEY_ENABLE = yes       # Mouse keys
-TAP_DANCE_ENABLE = no
 
 RGBLIGHT_ENABLE = yes        # Enable keyboard RGB underglow
-OLED_DRIVER_ENABLE = yes
+OLED_ENABLE = yes
+OLED_DRIVER = SSD1306
 LTO_ENABLE = yes
 VIA_ENABLE = yes
 
