@@ -102,7 +102,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 #define L_ADJUST_1 (L_ADJUST|L_LOWER)
 #define L_ADJUST_2 (L_ADJUST|L_RAISE)
 
-#ifdef OLED_DRIVER_ENABLE
+#ifdef OLED_ENABLE
 #include <stdio.h>
 #include <string.h>
 #include "../common/oled_helper.h"
@@ -155,7 +155,6 @@ static inline void render_status(void) {
   RENDER_LED_STATUS();
   update_keymap_status();
   render_keymap_status();
-  UPDATE_LOCK_STATUS();
   RENDER_LOCK_STATUS();
   RENDER_KEY_STATUS();
 }
@@ -167,13 +166,14 @@ oled_rotation_t oled_init_user(oled_rotation_t rotation) {
   return rotation;
 }
 
-void oled_task_user(void) {
+bool oled_task_user(void) {
 
   if (is_keyboard_master()) {
     render_status();
   } else {
     render_logo();
   }
+  return false;
 }
 
 #endif
