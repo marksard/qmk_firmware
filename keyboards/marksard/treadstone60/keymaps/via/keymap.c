@@ -14,6 +14,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 #include QMK_KEYBOARD_H
+#include "keymap_japanese.h"
 
 enum layer_number {
   _BASE,
@@ -34,7 +35,7 @@ enum custom_keycodes {
 
 // Base layer mod tap
 #define KC_ENCT  RCTL_T(KC_ENT)
-#define KC_ROSF  RSFT_T(KC_RO)
+#define KC_ROSF  RSFT_T(JP_BSLS)
 
 // Other
 #define KC_ALAP  RALT_T(KC_APP)
@@ -62,7 +63,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|---------+---------+---------+---------+---------+---------+---------+---------+---------+---------+---------+---------+---------|
        _______,   KC_F11,   KC_F12,  XXXXXXX,  XXXXXXX,  XXXXXXX,  KC_LEFT,  KC_DOWN,    KC_UP,  KC_RGHT,  XXXXXXX,  XXXXXXX,  _______,
   //|---------+---------+---------+---------+---------+---------+---------+---------+---------+---------+---------+---------+---------|
-       _______,  XXXXXXX,  XXXXXXX,  XXXXXXX,   KC_TAB,    KANJI,   KC_DEL,  XXXXXXX,  XXXXXXX,  XXXXXXX,  KC_JYEN,  _______,  _______,
+       _______,  XXXXXXX,  XXXXXXX,  XXXXXXX,   KC_TAB,    KANJI,   KC_DEL,  XXXXXXX,  XXXXXXX,  XXXXXXX,   JP_YEN,  _______,  _______,
   //|---------+---------+---------+---------+---------+---------+---------+---------+---------+---------+---------+^2.75rsft+---------|
        _______,  _______,  _______,            _______,            _______,            _______,  _______,  _______,  _______,  _______
   //`----------------------------------------^^splt1^^----------^spc/splt2^----------^^splt3^^----------------------------------------'
@@ -86,7 +87,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //,---------------------------------------------------------------------------------------------------------------------------------.
        _______,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,   KC_INS,  KC_PSCR,
   //|---------+---------+---------+---------+---------+---------+---------+---------+---------+---------+---------+---------+---------|
-       _______,    RESET,   RGBRST,  AG_NORM,  AG_SWAP,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  KC_NLCK,
+       _______,  QK_BOOT,   RGBRST,  AG_NORM,  AG_SWAP,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,   KC_NUM,
   //|---------+---------+---------+---------+---------+---------+---------+---------+---------+---------+---------+---------+---------|
        KC_CAPS,  RGB_TOG,  RGB_HUI,  RGB_SAI,  RGB_VAI,  XXXXXXX,  KC_MS_L,  KC_MS_D,  KC_MS_U,  KC_MS_R,  XXXXXXX,  XXXXXXX,  XXXXXXX,
   //|---------+---------+---------+---------+---------+---------+---------+---------+---------+---------+---------+---------+---------|

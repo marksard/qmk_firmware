@@ -14,6 +14,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 #include QMK_KEYBOARD_H
+#include "keymap_japanese.h"
 #include "./common/oled_helper.h"
 
 enum layer_number {
@@ -43,7 +44,7 @@ enum custom_keycodes {
 #define KC_F6CT  LCTL_T(KC_F6)
 #define KC_11SF  LSFT_T(KC_F11)
 #define KC_QUCT  RCTL_T(KC_QUOT)
-#define KC_ROSF  RSFT_T(KC_RO)
+#define KC_ROSF  RSFT_T(JP_BSLS)
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [_BASE] = LAYOUT_ortho_4x10(
@@ -64,7 +65,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|---------+---------+---------+---------+---------+---------+---------+---------+---------+---------|
        KC_F6CT,    KC_F7,    KC_F8,    KC_F9,   KC_F10,  XXXXXXX,  XXXXXXX,  XXXXXXX,  KC_SCLN,  KC_QUCT,
   //|---------+---------+---------+---------+---------+---------+---------+---------+---------+---------|
-       KC_11SF,   KC_F12,   KC_ESC,   KC_TAB,    KANJI,   KC_DEL,  XXXXXXX,  KC_JYEN,   KC_GRV,  KC_ROSF,
+       KC_11SF,   KC_F12,   KC_ESC,   KC_TAB,    KANJI,   KC_DEL,  XXXXXXX,   JP_YEN,   KC_GRV,  KC_ROSF,
   //`---------+---------+---------+---------+---------+---------+---------+---------+---------+---------'
        _______,  _______,  _______,  _______,   KC_DEL,  KC_MLAD,  KC_MLAD,  _______,  _______,  _______
   //,---------------------------------------------------------------------------------------------------.
@@ -84,9 +85,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   [_ADJUST] = LAYOUT_ortho_4x10(
   //,---------------------------------------------------------------------------------------------------.
-         RESET,   RGBRST,  AG_NORM,  AG_SWAP,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,   KC_INS,  KC_PSCR,
+       QK_BOOT,   RGBRST,  AG_NORM,  AG_SWAP,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,   KC_INS,  KC_PSCR,
   //|---------+---------+---------+---------+---------+---------+---------+---------+---------+---------|
-       RGB_TOG,  RGB_HUI,  RGB_SAI,  RGB_VAI,  XXXXXXX,  KC_HOME,  KC_PGDN,  KC_PGUP,   KC_END,  KC_NLCK,
+       RGB_TOG,  RGB_HUI,  RGB_SAI,  RGB_VAI,  XXXXXXX,  KC_HOME,  KC_PGDN,  KC_PGUP,   KC_END,   KC_NUM,
   //|---------+---------+---------+---------+---------+---------+---------+---------+---------+---------|
        RGB_MOD,  RGB_HUD,  RGB_SAD,  RGB_VAD,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  KC_CAPS,
   //`---------+---------+---------+---------+---------+---------+---------+---------+---------+---------'

@@ -1,4 +1,5 @@
 #include QMK_KEYBOARD_H
+#include "keymap_japanese.h"
 #include "bootloader.h"
 #ifdef PROTOCOL_LUFA
 #include "lufa.h"
@@ -49,7 +50,7 @@ enum tapdances{
 #define KC_KANJI KANJI
 
 // Adjust layer keys
-#define KC_RST   RESET
+#define KC_RST   QK_BOOT
 #define KC_LRST  RGBRST
 #define KC_LTOG  RGB_TOG
 #define KC_LHUI  RGB_HUI

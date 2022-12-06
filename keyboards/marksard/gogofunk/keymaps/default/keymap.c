@@ -14,6 +14,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 #include QMK_KEYBOARD_H
+#include "keymap_japanese.h"
 
 enum layer_number {
   _BASE = 0,
@@ -23,7 +24,7 @@ enum layer_number {
 #define KC_XXXXX KC_NO
 #define KC_KANJI KC_GRV
 
-#define KC_RST   RESET
+#define KC_RST   QK_BOOT
 
 #define KC_SFEQ  LSFT(KC_MINS)
 

@@ -34,8 +34,6 @@ if [ "$1" = "-all" ] || [ "$1" = "-like_jis" ]; then
 fi
 # 他
 if [ "$1" = "-all" ] || [ "$1" = "-marksard" ]; then
-    qmk compile -kb marksard/treadstone48/rev1 -km marksard
-    qmk compile -kb marksard/treadstone48/rev2 -km marksard
     qmk compile -kb 40percentclub/gherkin -km marksard
     qmk compile -kb 40percentclub/gherkin -km marksard_midi
     qmk compile -kb ai03/equinox -km marksard

@@ -14,6 +14,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 #include QMK_KEYBOARD_H
+#include "keymap_japanese.h"
 
 // Each layer gets a name for readability, which is then used in the keymap matrix below.
 // The underscores don't mean anything - you can have a layer called STUFF or any other name.
@@ -39,7 +40,7 @@ enum custom_keycodes {
 // Base layer mod tap
 #define KC_TBCT  LCTL_T(KC_TAB)
 #define KC_ENCT  RCTL_T(KC_ENT)
-#define KC_ROSF  RSFT_T(KC_RO)
+#define KC_ROSF  RSFT_T(JP_BSLS)
 
 // Lower layer mod tap
 #define KC_QUCT  RCTL_T(KC_QUOT)
@@ -64,11 +65,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   [_LOWER] = LAYOUT_base( \
   //,--------------------------------------------------------------------------------------------------------------------.
-       KC_GRV,   KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5, KC_MINS,  KC_EQL, KC_JYEN, KC_LBRC, KC_RBRC,          KC_BSLS,\
+       KC_GRV,   KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5, KC_MINS,  KC_EQL,  JP_YEN, KC_LBRC, KC_RBRC,          KC_BSLS,\
   //|--------+--------+--------+--------+--------+--------|--------+--------+--------+--------+--------+-----------------|
       _______,   KC_F6,   KC_F7,   KC_F8,   KC_F9,  KC_F10, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,          KC_QUCT,\
   //|--------+--------+--------+--------+--------+--------|--------+--------+--------+--------+--------+--------+--------|
-      _______,  KC_F11,  KC_F12, XXXXXXX, XXXXXXX,   KANJI,  KC_DEL, XXXXXXX, XXXXXXX,   KC_RO,  KC_GRV, KC_PGUP,         \
+      _______,  KC_F11,  KC_F12, XXXXXXX, XXXXXXX,   KANJI,  KC_DEL, XXXXXXX, XXXXXXX, JP_BSLS,  KC_GRV, KC_PGUP,         \
   //|--------+--------+--------+--------+--------+--------|--------+--------+--------+--------+--------+--------+--------|
       _______, _______, _______, _______,          _______,          KC_MLAD, _______, XXXXXXX, KC_HOME, KC_PGDN,  KC_END,\
   //`-------------------------------------------------------------------------------------------------------------------'
@@ -94,7 +95,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //,--------------------------------------------------------------------------------------------------------------------.
       XXXXXXX, QK_BOOT,  RGBRST, AG_NORM, AG_SWAP, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,  KC_INS,          KC_PSCR,\
   //|--------+--------+--------+--------+--------+--------|--------+--------+--------+--------+--------+-----------------|
-      KC_CAPS, RGB_TOG, RGB_HUI, RGB_SAI, RGB_VAI, XXXXXXX, KC_HOME, KC_PGDN, KC_PGUP,  KC_END, XXXXXXX,          KC_NLCK,\
+      KC_CAPS, RGB_TOG, RGB_HUI, RGB_SAI, RGB_VAI, XXXXXXX, KC_HOME, KC_PGDN, KC_PGUP,  KC_END, XXXXXXX,           KC_NUM,\
   //|--------+--------+--------+--------+--------+--------|--------+--------+--------+--------+--------+--------+--------|
       _______, RGB_MOD, RGB_HUD, RGB_SAD, RGB_VAD, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_BTN1, KC_BTN2, KC_MS_U,         \
   //|--------+--------+--------+--------+--------+--------|--------+--------+--------+--------+--------+--------+--------|
