@@ -51,7 +51,7 @@ enum custom_keycodes {
 #define KC_ROSF  RSFT_T(JP_BSLS)
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
-  [_BASE] = LAYOUT_all(
+  [_BASE] = LAYOUT_full(
   //,-----------------------------------------------------------------------------------------------------------.
                KC_Q_AL,    KC_W,    KC_E,    KC_R,    KC_T,    KC_Y,    KC_U,    KC_I,    KC_O,    KC_P, KC_BSPC,
   //|--------+--------+--------+--------+--------+--------|--------+--------+--------+--------+--------+--------|
@@ -65,7 +65,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   // The above 2 keys are used for rotary encoder rotating operation.
   ),
 
-  [_LOWER] = LAYOUT_all(
+  [_LOWER] = LAYOUT_full(
   //,-----------------------------------------------------------------------------------------------------------.
                KC_F1AL,   KC_F2,   KC_F3,   KC_F4,   KC_F5, KC_MINS,  KC_EQL,  JP_YEN, KC_LBRC, KC_RBRC, KC_BSLS,
   //|--------+--------+--------+--------+--------+--------|--------+--------+--------+--------+--------+--------|
@@ -79,7 +79,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   // The above 2 keys are used for rotary encoder rotating operation.
   ),
 
-  [_RAISE] = LAYOUT_all(
+  [_RAISE] = LAYOUT_full(
   //,-----------------------------------------------------------------------------------------------------------.
                   KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_6,    KC_7,    KC_8,    KC_9,    KC_0, KC_MINS,
   //|--------+--------+--------+--------+--------+--------|--------+--------+--------+--------+--------+--------|
@@ -93,7 +93,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   // The above 2 keys are used for rotary encoder rotating operation.
   ),
 
-  [_ADJUST] = LAYOUT_all(
+  [_ADJUST] = LAYOUT_full(
   //,-----------------------------------------------------------------------------------------------------------.
                QK_BOOT,  RGBRST, AG_NORM, AG_SWAP, XXXXXXX, KC_HOME, KC_PGDN, KC_PGUP,  KC_END,  KC_INS, KC_PSCR,
   //|--------+--------+--------+--------+--------+--------|--------+--------+--------+--------+--------+--------|
