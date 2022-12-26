@@ -39,8 +39,7 @@ if [ "$1" = "-all" ] || [ "$1" = "-marksard" ]; then
     qmk compile -kb ai03/equinox -km marksard
     qmk compile -kb ai03/polaris -km marksard
     qmk compile -kb crkbd/rev1 -km marksard
-    qmk compile -kb emptystring/NQG -km marksard
-    qmk compile -kb kawaii -km marksard
+    qmk compile -kb emptystring/nqg -km marksard
     qmk compile -kb kprepublic/jj40 -km marksard
     qmk compile -kb recompile_keys/nomu30 -km marksard
     qmk compile -kb reviung/reviung33 -km marksard

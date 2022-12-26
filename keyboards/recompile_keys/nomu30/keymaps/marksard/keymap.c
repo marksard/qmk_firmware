@@ -1,5 +1,5 @@
 #include QMK_KEYBOARD_H
-#include "keymap_jp.h"
+#include "keymap_japanese.h"
 
 extern keymap_config_t keymap_config;
 
@@ -71,9 +71,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   [_LOWER] = LAYOUT(
   //,-----------------------------------------------------------------------------------------------------------------------.
-                   KC_F1,    KC_F2,    KC_F3,    KC_F4,    KC_F5,  KC_MINS,   KC_EQL,  KC_JYEN,  KC_LBRC,  KC_RBRC,  _______,
+                   KC_F1,    KC_F2,    KC_F3,    KC_F4,    KC_F5,  KC_MINS,   KC_EQL,   JP_YEN,  KC_LBRC,  KC_RBRC,  _______,
   //|---------+---------+---------+---------+---------+---------+---------+---------+---------+---------+---------|
-       _______,    KC_F6,    KC_F7,    KC_F8,    KC_F9,   KC_F10,   KC_GRV,    KC_RO,  KC_SCLN,  KC_QUOT,  KC_BSSF,
+       _______,    KC_F6,    KC_F7,    KC_F8,    KC_F9,   KC_F10,   KC_GRV,  JP_BSLS,  KC_SCLN,  KC_QUOT,  KC_BSSF,
   //|---------+---------+---------+---------+---------+---------+---------+---------+---------+---------+---------|
        _______,  KC_11AL,   KC_F12,   KC_ESC,   KC_TAB,    KANJI,  KC_COMM,   KC_DOT,  KC_MLAD
   //`---------+---------+---------+---------+---------+---------+---------+---------+---------'
@@ -91,7 +91,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   [_ADJUST] = LAYOUT(
   //,-----------------------------------------------------------------------------------------------------------------------.
-                   RESET,   RGBRST,  AG_NORM,  AG_SWAP,  XXXXXXX,  XXXXXXX,  XXXXXXX,   KC_INS,  KC_PSCR,  KC_NLCK,  _______,
+                 QK_BOOT,   RGBRST,  AG_NORM,  AG_SWAP,  XXXXXXX,  XXXXXXX,  XXXXXXX,   KC_INS,  KC_PSCR,   KC_NUM,  _______,
   //|---------+---------+---------+---------+---------+---------+---------+---------+---------+---------+---------|
        _______,  RGB_TOG,  RGB_HUI,  RGB_SAI,  RGB_VAI,  XXXXXXX,  KC_MS_L,  KC_MS_D,  KC_MS_U,  KC_MS_R,  KC_CAPS,
   //|---------+---------+---------+---------+---------+---------+---------+---------+---------+---------+---------|
@@ -118,13 +118,12 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   switch (keycode) {
     case KANJI:
       if (record->event.pressed) {
-        if (keymap_config.swap_lalt_lgui == false) {
-          register_code(KC_LANG2);
-        } else {
+        if (keymap_config.swap_lalt_lgui) {
           SEND_STRING(SS_LALT("`"));
         }
-      } else {
-        unregister_code(KC_LANG2);
+        else {
+          SEND_STRING(SS_LGUI(" "));
+        }
       }
       break;
     #ifdef RGBLIGHT_ENABLE

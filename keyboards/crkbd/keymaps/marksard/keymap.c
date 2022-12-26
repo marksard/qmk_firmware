@@ -1,4 +1,6 @@
 #include QMK_KEYBOARD_H
+#include "keymap_japanese.h"
+
 #include "bootloader.h"
 #ifdef PROTOCOL_LUFA
   #include "lufa.h"
@@ -42,7 +44,7 @@ enum custom_keycodes {
 #define KC_F6CT  LCTL_T(KC_F6)
 #define KC_11SF  LSFT_T(KC_F11)
 #define KC_QUCT  RCTL_T(KC_QUOT)
-#define KC_ROSF  RSFT_T(KC_RO)
+#define KC_ROSF  RSFT_T(JP_BSLS)
 
 // Other
 #define KC_GRSF  RSFT_T(KC_GRV)
@@ -67,7 +69,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
       _______, KC_F6CT,   KC_F7,   KC_F8,   KC_F9,  KC_F10,                      XXXXXXX, XXXXXXX, XXXXXXX, KC_SCLN, KC_QUCT, _______,\
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      _______, KC_11SF,  KC_F12,  KC_ESC,  KC_TAB,   KANJI,                       KC_DEL, XXXXXXX, KC_JYEN,  KC_GRV, KC_ROSF, _______,\
+      _______, KC_11SF,  KC_F12,  KC_ESC,  KC_TAB,   KANJI,                       KC_DEL, XXXXXXX,  JP_YEN,  KC_GRV, KC_ROSF, _______,\
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
                                           RGB_MOD, RGB_TOG, _______,    KC_MLAD, _______, _______ \
                                       //`--------------------------'  `--------------------------'
@@ -87,9 +89,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   [_ADJUST] = LAYOUT_split_3x6_3( \
   //,-----------------------------------------------------.                    ,-----------------------------------------------------.
-      _______,   RESET,  RGBRST, AG_NORM, AG_SWAP, XXXXXXX,                      XXXXXXX, XXXXXXX, XXXXXXX,  KC_INS, KC_PSCR, _______,\
+      _______, QK_BOOT,  RGBRST, AG_NORM, AG_SWAP, XXXXXXX,                      XXXXXXX, XXXXXXX, XXXXXXX,  KC_INS, KC_PSCR, _______,\
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      _______, RGB_TOG, RGB_HUI, RGB_SAI, RGB_VAI, XXXXXXX,                      KC_HOME, KC_PGDN, KC_PGUP,  KC_END, KC_NLCK, _______,\
+      _______, RGB_TOG, RGB_HUI, RGB_SAI, RGB_VAI, XXXXXXX,                      KC_HOME, KC_PGDN, KC_PGUP,  KC_END,  KC_NUM, _______,\
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
       _______, RGB_MOD, RGB_HUD, RGB_SAD, RGB_VAD, XXXXXXX,                      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_CAPS, _______,\
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|

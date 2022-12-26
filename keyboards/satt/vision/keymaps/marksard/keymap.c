@@ -14,6 +14,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 #include QMK_KEYBOARD_H
+#include "keymap_japanese.h"
 
 // Each layer gets a name for readability, which is then used in the keymap matrix below.
 // The underscores don't mean anything - you can have a layer called STUFF or any other name.
@@ -37,7 +38,7 @@ enum custom_keycodes {
 
 #define KC_ALAP  LALT_T(KC_APP)
 #define KC_ENSF  RSFT_T(KC_ENT)
-#define KC_ROSF  RSFT_T(KC_RO)
+#define KC_ROSF  RSFT_T(JP_BSLS)
 #define KC_SLSF  RSFT_T(KC_SLSH)
 
 // Layer tap
@@ -59,7 +60,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   [_LOWER] = LAYOUT(
   //,-----------------------------------------------------------------------------------------------------------------------------.
-      XXXXXXX,  KC_GRV,   KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5, KC_MINS,  KC_EQL, KC_JYEN, KC_LBRC, KC_RBRC, KC_BSLS, KC_BSLS,
+      XXXXXXX,  KC_GRV,   KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5, KC_MINS,  KC_EQL,  JP_YEN, KC_LBRC, KC_RBRC, KC_BSLS, KC_BSLS,
   //|--------+--------+--------+--------+--------+--------+--------+--------|--------+--------+--------+--------+--------+--------|
       XXXXXXX, _______,   KC_F6,   KC_F7,   KC_F8,   KC_F9,  KC_F10, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_QUOT,          _______,
   //|--------+--------+--------+--------+--------+--------+--------+--------|--------+--------+--------+--------+--------+--------|
@@ -83,9 +84,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   [_ADJUST] = LAYOUT(
   //,-----------------------------------------------------------------------------------------------------------------------------.
-      XXXXXXX, XXXXXXX,   RESET, XXXXXXX, AG_NORM, AG_SWAP, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,  KC_INS, KC_PSCR,
+      XXXXXXX, XXXXXXX, QK_BOOT, XXXXXXX, AG_NORM, AG_SWAP, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,  KC_INS, KC_PSCR,
   //|--------+--------+--------+--------+--------+--------+--------+--------|--------+--------+--------+--------+--------+--------|
-      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_MS_L, KC_MS_D, KC_MS_U, KC_MS_R, XXXXXXX,          KC_NLCK,
+      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_MS_L, KC_MS_D, KC_MS_U, KC_MS_R, XXXXXXX,           KC_NUM,
   //|--------+--------+--------+--------+--------+--------+--------+--------|--------+--------+--------+--------+--------+--------|
                _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_BTN1, KC_BTN2, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, _______,
   //|--------+--------+--------+--------+--------+--------+--------+--------|--------+--------+--------+--------+--------+--------|
@@ -111,13 +112,12 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   switch (keycode) {
     case KANJI:
       if (record->event.pressed) {
-        if (keymap_config.swap_lalt_lgui == false) {
-          register_code(KC_LANG2);
-        } else {
+        if (keymap_config.swap_lalt_lgui) {
           SEND_STRING(SS_LALT("`"));
         }
-      } else {
-        unregister_code(KC_LANG2);
+        else {
+          SEND_STRING(SS_LGUI(" "));
+        }
       }
       break;
     default:
