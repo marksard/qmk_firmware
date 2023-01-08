@@ -1,4 +1,4 @@
-/* Copyright 2020 Paul James
+/* Copyright 2023 SapuSeven
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -14,16 +14,27 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "lumberjack.h"
+#include QMK_KEYBOARD_H
 
-bool process_record_kb(uint16_t keycode, keyrecord_t *record) {
-    writePin(LED1, record->event.pressed);
-
-    return process_record_user(keycode, record);
-}
-
-layer_state_t layer_state_set_kb(layer_state_t state) {
-    writePin(LED2, state);
-
-    return layer_state_set_user(state);
-}
+const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
+    [0] = LAYOUT(
+        KC_1, KC_2, KC_3, KC_PLUS,
+        KC_4, KC_5, KC_6, KC_MINUS,
+        KC_7, KC_8, KC_9, KC_0
+    ),
+    [1] = LAYOUT(
+        KC_F1, KC_F2, KC_F3, KC_F4,
+        KC_F5, KC_F6, KC_F7, KC_F8,
+        KC_F9, KC_F10, KC_F11, KC_F12
+    ),
+    [2] = LAYOUT(
+        KC_F13, KC_F14, KC_F15, KC_F16,
+        KC_F17, KC_F18, KC_F19, KC_F20,
+        KC_F21, KC_F22, KC_F23, KC_F24
+    ),
+    [3] = LAYOUT(
+        KC_NO, KC_NO, KC_NO, KC_NO,
+        KC_NO, KC_NO, KC_NO, KC_NO,
+        KC_NO, KC_NO, KC_NO, KC_NO
+    )
+};
