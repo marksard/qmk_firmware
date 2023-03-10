@@ -47,10 +47,10 @@ enum custom_keycodes {
 #define KC_11SF  LSFT_T(KC_F11)
 #define KC_12AL  LALT_T(KC_F12)
 #define KC_QUSF  RCTL_T(KC_QUOT)
-#define KC_ROSF  RSFT_T(KC_RO)
+#define KC_ROSF  RSFT_T(KC_INT1)
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
-  [_BASE] = LAYOUT_all(
+  [_BASE] = LAYOUT_full(
   //,-----------------------------------------------------------------------------------------------------------.
                KC_Q_AL,    KC_W,    KC_E,    KC_R,    KC_T,    KC_Y,    KC_U,    KC_I,    KC_O,    KC_P, KC_BSPC,
   //|--------+--------+--------+--------+--------+--------|--------+--------+--------+--------+--------+--------|
@@ -58,23 +58,27 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|--------+--------+--------+--------+--------+--------|--------+--------+--------+--------+--------+--------|
                KC_Z_SF, KC_X_AL,    KC_C,    KC_V,    KC_B,    KC_N,    KC_M, KC_COMM,  KC_DOT,     KC_SLSF,
   //|--------+--------+--------+--------+--------+--------|--------+--------+--------+--------+--------+--------|
-      KC_LCTL, KC_LGUI,                                KC_SPRA,                                 KC_LOWR, KC_RCTL
+      KC_LCTL, KC_LGUI,                                KC_SPRA,                                 KC_LOWR, KC_RCTL,
   //`-----------------------------------------------------------------------------------------------------------'
-  ),
+      KC_WH_U, KC_WH_D
+  // The above 2 keys are used for rotary encoder rotating operation.
+),
 
-  [_LOWER] = LAYOUT_all(
+  [_LOWER] = LAYOUT_full(
   //,-----------------------------------------------------------------------------------------------------------.
-               KC_F1AL,   KC_F2,   KC_F3,   KC_F4,   KC_F5, KC_MINS,  KC_EQL, KC_JYEN, KC_LBRC, KC_RBRC, KC_BSLS,
+               KC_F1AL,   KC_F2,   KC_F3,   KC_F4,   KC_F5, KC_MINS,  KC_EQL, KC_INT3, KC_LBRC, KC_RBRC, KC_BSLS,
   //|--------+--------+--------+--------+--------+--------|--------+--------+--------+--------+--------+--------|
                KC_F6CT,   KC_F7,   KC_F8,   KC_F9,  KC_F10, XXXXXXX, XXXXXXX, XXXXXXX, KC_SCLN,     KC_QUSF,
   //|--------+--------+--------+--------+--------+--------|--------+--------+--------+--------+--------+--------|
-               KC_11SF, KC_12AL, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,  KC_GRV,   KC_RO, KC_SLSH,     KC_ROSF,
+               KC_11SF, KC_12AL, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,  KC_GRV, KC_INT1, KC_SLSH,     KC_ROSF,
   //|--------+--------+--------+--------+--------+--------|--------+--------+--------+--------+--------+--------|
-      _______, _______,                                KC_AJST,                                 _______, _______
+      _______, _______,                                KC_AJST,                                 _______, _______,
   //`-----------------------------------------------------------------------------------------------------------'
+      LCTL(KC_Z), LCTL(KC_Y)
+  // The above 2 keys are used for rotary encoder rotating operation.
   ),
 
-  [_RAISE] = LAYOUT_all(
+  [_RAISE] = LAYOUT_full(
   //,-----------------------------------------------------------------------------------------------------------.
                   KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_6,    KC_7,    KC_8,    KC_9,    KC_0, KC_MINS,
   //|--------+--------+--------+--------+--------+--------|--------+--------+--------+--------+--------+--------|
@@ -82,20 +86,24 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|--------+--------+--------+--------+--------+--------|--------+--------+--------+--------+--------+--------|
                KC_LSFT, XXXXXXX,  KC_ESC,  KC_TAB,   KANJI,  KC_DEL, KC_COMM,  KC_DOT, KC_BSLS,     KC_ROSF,
   //|--------+--------+--------+--------+--------+--------|--------+--------+--------+--------+--------+--------|
-      _______, _______,                                _______,                                 KC_AJST, _______
+      _______, _______,                                _______,                                 KC_AJST, _______,
   //`-----------------------------------------------------------------------------------------------------------'
+      S(KC_UP), S(KC_DOWN)
+  // The above 2 keys are used for rotary encoder rotating operation.
   ),
 
-  [_ADJUST] = LAYOUT_all(
+  [_ADJUST] = LAYOUT_full(
   //,-----------------------------------------------------------------------------------------------------------.
                  QK_BOOT,  RGBRST, AG_NORM, AG_SWAP, XXXXXXX, KC_HOME, KC_PGDN, KC_PGUP,  KC_END,  KC_INS, KC_PSCR,
   //|--------+--------+--------+--------+--------+--------|--------+--------+--------+--------+--------+--------|
-               RGB_TOG, RGB_HUI, RGB_SAI, RGB_VAI, XXXXXXX, KC_MS_L, KC_MS_D, KC_MS_U, KC_MS_R,     KC_NLCK,
+               RGB_TOG, RGB_HUI, RGB_SAI, RGB_VAI, XXXXXXX, KC_MS_L, KC_MS_D, KC_MS_U, KC_MS_R,     KC_NUM,
   //|--------+--------+--------+--------+--------+--------|--------+--------+--------+--------+--------+--------|
                RGB_MOD, RGB_HUD, RGB_SAD, RGB_VAD, XXXXXXX, KC_BTN1, KC_BTN2, XXXXXXX, XXXXXXX,     KC_CAPS,
   //|--------+--------+--------+--------+--------+--------|--------+--------+--------+--------+--------+--------|
-      _______, _______,                                _______,                                 _______, KC_CAPS
+      _______, _______,                                _______,                                 _______, KC_CAPS,
   //`-----------------------------------------------------------------------------------------------------------'
+      RGB_HUD, RGB_HUI  
+  // The above 2 keys are used for rotary encoder rotating operation.
   )
 };
 
@@ -114,18 +122,18 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   switch (keycode) {
     case KANJI:
       if (record->event.pressed) {
-          register_code16(keymap_config.swap_lalt_lgui ? A(KC_GRV) : KC_LANG2);
+          register_code16(keymap_config.swap_lalt_lgui ? A(KC_GRV) : KC_LNG2);
       } else {
-          unregister_code16(keymap_config.swap_lalt_lgui ? A(KC_GRV) : KC_LANG2);
+          unregister_code16(keymap_config.swap_lalt_lgui ? A(KC_GRV) : KC_LNG2);
       }
-    break;
+      break;
 #ifdef RGBLIGHT_ENABLE
     case RGBRST:
         if (record->event.pressed) {
           eeconfig_update_rgblight_default();
           rgblight_enable();
         }
-    break;
+      break;
 #endif
     default:
       result = true;
@@ -136,20 +144,17 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 }
 
 bool encoder_update_user(uint8_t index, bool clockwise) {
+    keypos_t key;
     if (index == 0) {
-        if (IS_LAYER_ON(_ADJUST)) {
-          if (clockwise) {
-              rgblight_increase_hue_noeeprom();
-          } else {
-              rgblight_decrease_hue_noeeprom();
-          }
-        } else if (IS_LAYER_ON(_LOWER)) {
-          tap_code16((clockwise == true) ? LCTL(KC_Y) : LCTL(KC_Z));
-        } else if (IS_LAYER_ON(_RAISE)) {
-          tap_code16((clockwise == true) ? S(KC_DOWN) : S(KC_UP));
+        if (clockwise) {
+            key.row = 7;
+            key.col = 1;
         } else {
-          tap_code((clockwise == true) ? KC_WH_D : KC_WH_U);
+            key.row = 7;
+            key.col = 0;
         }
+        action_exec((keyevent_t){.key = key, .pressed = true, .time = (timer_read() | 1)});
+        action_exec((keyevent_t){.key = key, .pressed = false, .time = (timer_read() | 1)});
     }
     return true;
 }
