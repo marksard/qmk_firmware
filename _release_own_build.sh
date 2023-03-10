@@ -65,7 +65,7 @@ if [ "$1" = "-viapack" ]; then
     zip -r ./_release/marksard_leftover30_via.zip ./marksard_leftover30_via.json ./marksard_leftover30_via.hex
     zip -r ./_release/marksard_rhymestone_rev1_via.zip ./marksard_rhymestone_rev1_via.json ./marksard_rhymestone_rev1_via.hex
     zip -r ./_release/marksard_treadstone60_via.zip ./marksard_treadstone60_via.json ./marksard_treadstone60_via.hex
-    zip -r ./_release/marksard_m0ii040pcb_via.zip ./marksard_m0ii040pcb_via.json ./marksard_m0ii040pcb_via.uf2
+    zip -r ./_release/marksard_m0ii040pcb_via.zip ./marksard_m0ii040pcb_via.json ./marksard_m0ii040pcb_via.bin
 fi
 # ファイルサイズチェック（qmk compile -kbで生成時エラーが出てたような気もするけどciのログ出し用途も兼ねて）
 if [ "$1" = "-hexcheck" ] || [ "$1" = "-via" ] || [ "$1" = "-release" ]; then
