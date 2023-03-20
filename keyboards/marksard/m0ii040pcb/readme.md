@@ -1,6 +1,6 @@
 # marksard/m0ii040pcb
 
-![marksard/m0ii040pcb](imgur.com image replace me!)
+![marksard/m0ii040pcb](https://user-images.githubusercontent.com/38324387/223320590-b9968f6c-f968-45e6-b936-463314d307b8.jpg)
 
 *A short description of the keyboard/project*
 
