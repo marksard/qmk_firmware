@@ -47,23 +47,24 @@ if [ "$1" = "-all" ] || [ "$1" = "-marksard" ]; then
     qmk compile -kb satt/vision -km marksard
     qmk compile -kb thevankeyboards/minivan -km marksard
     qmk compile -kb 0_mark_kai_pcbs/ncr80_hot -km default
-fi
+    qmk compile -kb 0_mark_kai_pcbs/olsk60 -km default
+    fi
 # VIAファイル圧縮
 if [ "$1" = "-viapack" ]; then
+    cp ./keyboards/marksard/leftover30/keymaps/via/marksard_leftover30_via.json ./marksard_leftover30_via.json
+    cp ./keyboards/marksard/rhymestone/keymaps/via/marksard_rhymestone_rev1_via.json ./marksard_rhymestone_rev1_via.json
     cp ./keyboards/marksard/treadstone32/keymaps/via/marksard_treadstone32_rev1_lite_via.json ./marksard_treadstone32_rev1_lite_via.json
     cp ./keyboards/marksard/treadstone48/keymaps/via/marksard_treadstone48_rev1_via.json ./marksard_treadstone48_rev1_via.json
     cp ./keyboards/marksard/treadstone48/keymaps/via/marksard_treadstone48_rev2_via.json ./marksard_treadstone48_rev2_via.json
-    cp ./keyboards/marksard/leftover30/keymaps/via/marksard_leftover30_via.json ./marksard_leftover30_via.json
-    cp ./keyboards/marksard/rhymestone/keymaps/via/marksard_rhymestone_rev1_via.json ./marksard_rhymestone_rev1_via.json
     cp ./keyboards/marksard/treadstone60/keymaps/via/marksard_treadstone60_via.json ./marksard_treadstone60_via.json
     cp ./keyboards/marksard/m0ii040pcb/keymaps/via/marksard_m0ii040pcb_via.json ./marksard_m0ii040pcb_via.json
     mkdir _release
+    zip -r ./_release/marksard_leftover30_via.zip ./marksard_leftover30_via.json ./marksard_leftover30_via.hex
+    zip -r ./_release/marksard_rhymestone_rev1_via.zip ./marksard_rhymestone_rev1_via.json ./marksard_rhymestone_rev1_via.hex
     zip -r ./_release/marksard_treadstone32_rev1_via.zip ./marksard_treadstone32_rev1_lite_via.json ./marksard_treadstone32_rev1_via.hex
     zip -r ./_release/marksard_treadstone32_lite_via.zip ./marksard_treadstone32_rev1_lite_via.json ./marksard_treadstone32_lite_via.hex
     zip -r ./_release/marksard_treadstone48_rev1_via.zip ./marksard_treadstone48_rev1_via.json ./marksard_treadstone48_rev1_via.hex
     zip -r ./_release/marksard_treadstone48_rev2_via.zip ./marksard_treadstone48_rev2_via.json ./marksard_treadstone48_rev2_via.hex
-    zip -r ./_release/marksard_leftover30_via.zip ./marksard_leftover30_via.json ./marksard_leftover30_via.hex
-    zip -r ./_release/marksard_rhymestone_rev1_via.zip ./marksard_rhymestone_rev1_via.json ./marksard_rhymestone_rev1_via.hex
     zip -r ./_release/marksard_treadstone60_via.zip ./marksard_treadstone60_via.json ./marksard_treadstone60_via.hex
     zip -r ./_release/marksard_m0ii040pcb_via.zip ./marksard_m0ii040pcb_via.json ./marksard_m0ii040pcb_via.bin
 fi

@@ -17,7 +17,7 @@
         "rows": ["B8", "B7", "B6", "B5"]
     },
     "processor": "STM32F072",
-    "url": "https://github.com/marksard/Keyboards",
+    "url": "https://github.com/marksard/ms_m0ii040pcb",
     "usb": {
         "device_version": "1.0.0",
         "vid": "0x1209",
