@@ -1,12 +1,14 @@
 # marksard/m0ii040pcb
 
 ![marksard/m0ii040pcb](https://user-images.githubusercontent.com/38324387/223320590-b9968f6c-f968-45e6-b936-463314d307b8.jpg)
+![marksard/m0ii040pcb](https://user-images.githubusercontent.com/38324387/226288131-79cc7732-7595-455d-aab1-5a6c785ed61a.jpg)
 
-*A short description of the keyboard/project*
+ms_m0ii040PCB is a dedicated PCB for m0ii040 produced by [yohewi](https://github.com/yohewi).  
+This keyboard has two different PCBs with different layouts.  
 
-* Keyboard Maintainer: [marksard](https://github.com/marksard)
-* Hardware Supported: *The PCBs, controllers supported*
-* Hardware Availability: *Links to where you can find this hardware*
+* PCB Maintainer: [marksard](https://github.com/marksard)
+* Hardware Supported: STM32F072
+* Hardware Availability: [ms_m0ii040pcb](https://github.com/marksard/ms_m0ii040pcb)  
 
 Make example for this keyboard (after setting up your build environment):
 
