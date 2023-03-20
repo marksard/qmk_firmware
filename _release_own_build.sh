@@ -47,7 +47,8 @@ if [ "$1" = "-all" ] || [ "$1" = "-marksard" ]; then
     qmk compile -kb satt/vision -km marksard
     qmk compile -kb thevankeyboards/minivan -km marksard
     qmk compile -kb 0_mark_kai_pcbs/ncr80_hot -km default
-fi
+    qmk compile -kb 0_mark_kai_pcbs/olsk60 -km default
+    fi
 # VIAファイル圧縮
 if [ "$1" = "-viapack" ]; then
     cp ./keyboards/marksard/leftover30/keymaps/via/marksard_leftover30_via.json ./marksard_leftover30_via.json
