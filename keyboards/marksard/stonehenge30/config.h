@@ -17,8 +17,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #pragma once
 
-#include "config_common.h"
-
 /* USB Device descriptor parameter */
 #define VENDOR_ID       0xFEED
 #define PRODUCT_ID      0xDFA4
@@ -77,7 +75,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 )
 
 /* ws2812 RGB LED */
-#define RGB_DI_PIN D3
+#define WS2812_DI_PIN D3
 #define RGBLIGHT_TIMER
 //#define RGBLED_NUM 12    // Number of LEDs. see ./keymaps/default/config.h
 #define ws2812_PORTREG  PORTD

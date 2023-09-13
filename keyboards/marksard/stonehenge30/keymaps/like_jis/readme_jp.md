@@ -33,5 +33,5 @@ config.hの以下のTAPPING_TERMを調整してください。またPREVENT_STUC
 ```h
 #define TAPPING_TERM 200
 #define PREVENT_STUCK_MODIFIERS
-#define IGNORE_MOD_TAP_INTERRUPT
+
 ```
