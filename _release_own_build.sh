@@ -7,6 +7,7 @@ if [ "$1" = "-all" ] || [ "$1" = "-via" ] || [ "$1" = "-release" ]; then
     qmk compile -kb marksard/rhymestone -km via
     qmk compile -kb marksard/treadstone32 -km via
     qmk compile -kb marksard/treadstone32/lite -km via
+    qmk compile -kb marksard/treadstone32/rev2 -km via
     qmk compile -kb marksard/treadstone48/rev1 -km via
     qmk compile -kb marksard/treadstone48/rev2 -km via
     qmk compile -kb marksard/treadstone60 -km via
@@ -18,6 +19,7 @@ if [ "$1" = "-all" ] || [ "$1" = "-default" ] || [ "$1" = "-release" ]; then
     qmk compile -kb marksard/rhymestone -km default
     qmk compile -kb marksard/treadstone32 -km default
     qmk compile -kb marksard/treadstone32/lite -km default
+    qmk compile -kb marksard/treadstone32/rev2 -km default
     qmk compile -kb marksard/treadstone48/rev1 -km default
     qmk compile -kb marksard/treadstone48/rev2 -km default
     qmk compile -kb marksard/treadstone60 -km default
@@ -54,6 +56,7 @@ if [ "$1" = "-viapack" ]; then
     cp ./keyboards/marksard/leftover30/keymaps/via/marksard_leftover30_via.json ./marksard_leftover30_via.json
     cp ./keyboards/marksard/rhymestone/keymaps/via/marksard_rhymestone_rev1_via.json ./marksard_rhymestone_rev1_via.json
     cp ./keyboards/marksard/treadstone32/keymaps/via/marksard_treadstone32_rev1_lite_via.json ./marksard_treadstone32_rev1_lite_via.json
+    cp ./keyboards/marksard/treadstone32/keymaps/via/marksard_treadstone32_rev2_via.json ./marksard_treadstone32_rev2_via.json
     cp ./keyboards/marksard/treadstone48/keymaps/via/marksard_treadstone48_rev1_via.json ./marksard_treadstone48_rev1_via.json
     cp ./keyboards/marksard/treadstone48/keymaps/via/marksard_treadstone48_rev2_via.json ./marksard_treadstone48_rev2_via.json
     cp ./keyboards/marksard/treadstone60/keymaps/via/marksard_treadstone60_via.json ./marksard_treadstone60_via.json
@@ -63,6 +66,7 @@ if [ "$1" = "-viapack" ]; then
     zip -r ./_release/marksard_rhymestone_rev1_via.zip ./marksard_rhymestone_rev1_via.json ./marksard_rhymestone_rev1_via.hex
     zip -r ./_release/marksard_treadstone32_rev1_via.zip ./marksard_treadstone32_rev1_lite_via.json ./marksard_treadstone32_rev1_via.hex
     zip -r ./_release/marksard_treadstone32_lite_via.zip ./marksard_treadstone32_rev1_lite_via.json ./marksard_treadstone32_lite_via.hex
+    zip -r ./_release/marksard_treadstone32_rev2_via.zip ./marksard_treadstone32_rev2_via.json ./marksard_treadstone32_rev2_via.bin
     zip -r ./_release/marksard_treadstone48_rev1_via.zip ./marksard_treadstone48_rev1_via.json ./marksard_treadstone48_rev1_via.hex
     zip -r ./_release/marksard_treadstone48_rev2_via.zip ./marksard_treadstone48_rev2_via.json ./marksard_treadstone48_rev2_via.hex
     zip -r ./_release/marksard_treadstone60_via.zip ./marksard_treadstone60_via.json ./marksard_treadstone60_via.hex
