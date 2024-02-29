@@ -1,7 +1,12 @@
 {
+    "manufacturer": "marksard",
+    "url": "https://github.com/marksard/Keyboards",
+    "maintainer": "marksard",
     "keyboard_name": "treadstone32",
     "usb": {
-        "device_version": "0.1.0"
+        "device_version": "0.1.0",
+        "vid": "0xFEED",
+        "pid": "0xDFA5"
     },
     "rgblight": {
         "saturation_steps": 8,

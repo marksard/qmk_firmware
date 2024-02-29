@@ -1,7 +1,13 @@
 {
     "manufacturer": "marksard",
-    "keyboard_name": "Treadstone32 rev2",
+    "url": "https://github.com/marksard/treadstone32",
     "maintainer": "marksard",
+    "keyboard_name": "Treadstone32 rev2",
+    "usb": {
+        "device_version": "2.0.0",
+        "vid": "0x1209",
+        "pid": "0xDFAA"
+    },
     "bootloader": "stm32-dfu",
     "diode_direction": "COL2ROW",
     "features": {
@@ -17,12 +23,6 @@
         "rows": ["B7", "B6", "B5", "B2"]
     },
     "processor": "STM32F072",
-    "url": "https://github.com/marksard/treadstone32",
-    "usb": {
-        "device_version": "2.0.0",
-        "vid": "0x1209",
-        "pid": "0xDFAA"
-    },
     "rgblight": {
         "saturation_steps": 8,
         "brightness_steps": 8,
