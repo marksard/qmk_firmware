@@ -26,7 +26,7 @@ if [ "$1" = "-all" ] || [ "$1" = "-default" ] || [ "$1" = "-release" ]; then
     #qmk compile -kb marksard/gogofunk -km default
     #qmk compile -kb marksard/stoneaxe -km default
     #qmk compile -kb marksard/stonehenge30 -km like_jis
-    qmk compile -kb marksard/treadstone38 -km default
+    #qmk compile -kb marksard/treadstone38 -km default
 fi
 # 他
 if [ "$1" = "-all" ] || [ "$1" = "-like_jis" ]; then
