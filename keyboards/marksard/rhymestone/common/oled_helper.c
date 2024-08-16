@@ -1,3 +1,4 @@
+#include "rgblight.h"
 #include "oled_helper.h"
 #include "host.h"
 #include "progmem.h"
