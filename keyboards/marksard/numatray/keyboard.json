@@ -18,7 +18,7 @@
     "url": "https://github.com/marksard/numatray",
     "usb": {
         "device_version": "1.0.0",
-        "vid": "0xFEED",
+        "vid": "0x1209",
         "pid": "0xDFAB"
     },
     "layouts": {
