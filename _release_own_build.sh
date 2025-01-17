@@ -12,6 +12,7 @@ if [ "$1" = "-all" ] || [ "$1" = "-via" ] || [ "$1" = "-release" ]; then
     qmk compile -kb marksard/treadstone48/rev2 -km via
     qmk compile -kb marksard/treadstone60 -km via
     qmk compile -kb marksard/m0ii040pcb -km via
+    qmk compile -kb marksard/numatray -km via
 fi
 # デフォルト
 if [ "$1" = "-all" ] || [ "$1" = "-default" ] || [ "$1" = "-release" ]; then
@@ -61,6 +62,7 @@ if [ "$1" = "-viapack" ]; then
     cp ./keyboards/marksard/treadstone48/keymaps/via/marksard_treadstone48_rev2_via.json ./marksard_treadstone48_rev2_via.json
     cp ./keyboards/marksard/treadstone60/keymaps/via/marksard_treadstone60_via.json ./marksard_treadstone60_via.json
     cp ./keyboards/marksard/m0ii040pcb/keymaps/via/marksard_m0ii040pcb_via.json ./marksard_m0ii040pcb_via.json
+    cp ./keyboards/marksard/numatray/keymaps/via/marksard_numatray_via.json ./marksard_numatray_via.json
     mkdir _release
     zip -r ./_release/marksard_leftover30_via.zip ./marksard_leftover30_via.json ./marksard_leftover30_via.hex
     zip -r ./_release/marksard_rhymestone_rev1_via.zip ./marksard_rhymestone_rev1_via.json ./marksard_rhymestone_rev1_via.hex
@@ -71,6 +73,7 @@ if [ "$1" = "-viapack" ]; then
     zip -r ./_release/marksard_treadstone48_rev2_via.zip ./marksard_treadstone48_rev2_via.json ./marksard_treadstone48_rev2_via.hex
     zip -r ./_release/marksard_treadstone60_via.zip ./marksard_treadstone60_via.json ./marksard_treadstone60_via.hex
     zip -r ./_release/marksard_m0ii040pcb_via.zip ./marksard_m0ii040pcb_via.json ./marksard_m0ii040pcb_via.bin
+    zip -r ./_release/marksard_numatray_via.zip ./marksard_numatray_via.json ./marksard_numatray_via.uf2
 fi
 # ファイルサイズチェック（qmk compile -kbで生成時エラーが出てたような気もするけどciのログ出し用途も兼ねて）
 if [ "$1" = "-hexcheck" ] || [ "$1" = "-via" ] || [ "$1" = "-release" ]; then
