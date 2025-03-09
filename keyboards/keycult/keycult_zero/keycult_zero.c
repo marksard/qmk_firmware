@@ -1,4 +1,4 @@
-/* Copyright 2025 @ Keychron (https://www.keychron.com)
+/* Copyright 2024 Yiancar-Designs
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -13,14 +13,9 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
+#include "quantum.h"
 
-#pragma once
-
-/* Indication led */
-#define LED_MAC_OS_PIN C10
-#define LED_WIN_OS_PIN C11
-#define LED_OS_PIN_ON_STATE 1
-
-/* The I2C Driver Configuration */
-#define I2C1_CLOCK_SPEED 400000
-#define I2C1_DUTY_CYCLE FAST_DUTY_CYCLE_2
+void led_init_ports(void) {
+    // Set our LED pins as open drain outputs
+    gpio_set_pin_output_open_drain(LED_CAPS_LOCK_PIN);
+}
