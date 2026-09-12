@@ -3,6 +3,7 @@ pwd
 
 # VIA
 if [ "$1" = "-all" ] || [ "$1" = "-via" ] || [ "$1" = "-release" ]; then
+    qmk compile -kb marksard/alphamod32 -km via
     qmk compile -kb marksard/leftover30 -km via
     qmk compile -kb marksard/rhymestone -km via
     qmk compile -kb marksard/treadstone32 -km via
@@ -16,6 +17,7 @@ if [ "$1" = "-all" ] || [ "$1" = "-via" ] || [ "$1" = "-release" ]; then
 fi
 # デフォルト
 if [ "$1" = "-all" ] || [ "$1" = "-default" ] || [ "$1" = "-release" ]; then
+    qmk compile -kb marksard/alphamod32 -km default
     qmk compile -kb marksard/leftover30 -km default
     qmk compile -kb marksard/rhymestone -km default
     qmk compile -kb marksard/treadstone32 -km default
@@ -54,6 +56,7 @@ if [ "$1" = "-all" ] || [ "$1" = "-marksard" ]; then
     fi
 # VIAファイル圧縮
 if [ "$1" = "-viapack" ]; then
+    cp ./keyboards/marksard/alphamod32/keymaps/via/marksard_alphamod32_via.json ./marksard_alphamod32_via.json
     cp ./keyboards/marksard/leftover30/keymaps/via/marksard_leftover30_via.json ./marksard_leftover30_via.json
     cp ./keyboards/marksard/rhymestone/keymaps/via/marksard_rhymestone_rev1_via.json ./marksard_rhymestone_rev1_via.json
     cp ./keyboards/marksard/treadstone32/keymaps/via/marksard_treadstone32_rev1_lite_via.json ./marksard_treadstone32_rev1_lite_via.json
@@ -64,6 +67,7 @@ if [ "$1" = "-viapack" ]; then
     cp ./keyboards/marksard/m0ii040pcb/keymaps/via/marksard_m0ii040pcb_via.json ./marksard_m0ii040pcb_via.json
     cp ./keyboards/marksard/numatray/keymaps/via/marksard_numatray_via.json ./marksard_numatray_via.json
     mkdir _release
+    zip -r ./_release/marksard_alphamod32_via.zip ./marksard_alphamod32_via.json ./marksard_alphamod32_via.bin
     zip -r ./_release/marksard_leftover30_via.zip ./marksard_leftover30_via.json ./marksard_leftover30_via.hex
     zip -r ./_release/marksard_rhymestone_rev1_via.zip ./marksard_rhymestone_rev1_via.json ./marksard_rhymestone_rev1_via.hex
     zip -r ./_release/marksard_treadstone32_rev1_via.zip ./marksard_treadstone32_rev1_lite_via.json ./marksard_treadstone32_rev1_via.hex
